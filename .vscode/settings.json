@@ -1,0 +1,14 @@
+{
+    "python.pythonPath": "backend/venv/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "pylint",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+    ],
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.pydocstyleArgs": [
+        "--ignore-E501"
+    ],
+    "editor.minimap.enabled": false,
+    "eslint.enable": true,
+}

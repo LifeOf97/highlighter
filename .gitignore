@@ -1,0 +1,14 @@
+# ignore the virtual environment
+backend/venv/
+
+# ignore files randomly created
+backend/status.txt
+backend/pygment.txt
+backend/formatters.txt
+
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
