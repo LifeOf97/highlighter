@@ -9,7 +9,7 @@ LEXERS = [lexer for lexer in get_all_lexers()]
 LANGUAGES = sorted([(lexer[1][0], lexer[0]) for lexer in LEXERS])
 # get and organize all styles in tuples 
 STYLES = sorted([(style, style) for style in get_all_styles()])
-# available formatters as of version 0.1.1 
+# available formatters as @ version 0.1.1 (not released).
 FORMATTERS = sorted(
     ('bbcode', 'bbcode'),
     ('irc', 'irc'),
