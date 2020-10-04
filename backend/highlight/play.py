@@ -26,7 +26,9 @@ style = get_style_by_name(get_style)
 
 if get_format.lower() in ['bbcode', 'bb']:
     formatter = BBCodeFormatter(style=style, codetag=True, monofont=True)
-    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
+    highlighted = highlight(code=get_code, lexer=lexer, formatter=formatter)
+    result = Path('bbcoderesult')
+    result.write_text(data=highlighted)
 
 elif get_format.lower() in ['bmp', 'bitmap']:
     formatter = BmpImageFormatter(
@@ -42,7 +44,7 @@ elif get_format.lower() in ['gif']:
         image_format='gif', line_number_bold=False, line_number_italic=False,
         line_number_separator=False, line_number_fg='#FFF',
     )
-    highlight(code=get_code, lexer=lexer, formatter=formatter, outfile='result.gif')
+    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
 
 elif get_format.lower() in ['img', 'png', 'image']:
     formatter = ImageFormatter(
@@ -74,17 +76,15 @@ elif get_format.lower() in ['rtf']:
 
 elif get_format.lower() in ['txt', 'text', 'null']:
     formatter = NullFormatter()
-    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
+    highlight(code=get_code, lexer=lexer, formatter=formatter, outfile='result.txt')
 
 elif get_format.lower() in ['svg']:
     formatter = SvgFormatter(
         style=style, nowrap=False, fontfamily='monospace',
         fontsize='16px', linenos=False,
     )
-    code_highlight = highlight(code=get_code, lexer=lexer, formatter=formatter)
-    result = Path('result.svg')
-    result.write_text(data=code_highlight)
-
+    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
+    
 elif get_format.lower() in ['html', 'htm']:
     formatter = HtmlFormatter(
         style=style, linenos='inline', noclasses=True, cssclass='pygment',
@@ -96,8 +96,12 @@ elif get_format.lower() in ['html', 'htm']:
 
 elif get_format.lower() in ['terminal256', 'console256', '256']:
     formatter = Terminal256Formatter(style=style)
-    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
+    highlighted = highlight(code=get_code, lexer=lexer, formatter=formatter)
+    result = Path('terminal256')
+    result.write_text(data=highlighted)
 
 elif get_format.lower() in ['terminal', 'console']:
     formatter = TerminalFormatter(bg='dark', colorscheme=None, linenos=True)
-    print(highlight(code=get_code, lexer=lexer, formatter=formatter))
+    highlighted = highlight(code=get_code, lexer=lexer, formatter=formatter)
+    result = Path('terminal')
+    result.write_text(data=highlighted)
