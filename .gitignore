@@ -7,6 +7,8 @@ backend/pygment.txt
 backend/formatters.txt
 
 # Django stuff:
+static/
+media/
 *.log
 local_settings.py
 db.sqlite3
