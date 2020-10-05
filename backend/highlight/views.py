@@ -23,6 +23,7 @@ from pygments import highlight
 class Highlighter(APIView):
     """
     Class API view.
+    does not have an queryset attribute.
 
     post:
     only allows post request along side the data(code text) to highlight.
@@ -34,48 +35,48 @@ class Highlighter(APIView):
 
         # if the serializer is valid run this statement.
         if serializer.is_valid():
-            code: str = serializer.get('code')
-            lexer = get_lexer_by_name(serializer.get('language'))
-            style = get_style_by_name(serializer.get('style'))
-            get_format: str = serializer.get('formatter')
+            code: str = serializer.data.get('code')
+            lexer = get_lexer_by_name(serializer.data.get('language'))
+            style = get_style_by_name(serializer.data.get('style'))
+            get_format: str = serializer.data.get('formatter')
 
             #---more options, for formatters that require this settings.
             # linenos is used to request if the result should have line numbers
             # or not, this can be one of ['inline', 'table', False], defaults to
             # False, no line numbers
-            linenos = False if serializer.get('linenos') == 'none' else serializer.get('linenos')
+            linenos = False if serializer.data.get('linenos') == 'none' else serializer.data.get('linenos')
             
             # noclasses is used to define if the user requires inline css
             # styling or classes, if set to True inline styling is used and
             # the 'full, separate and other optional arguments will not take
             # effect, defaults to True
-            noclasses: bool = serializer.get('noclasses')
+            noclasses: bool = serializer.data.get('noclasses')
             
             # class name to wrap the whole code block, defaults to highlighter,
             # NOTE: if linenos is set to table the cssclass name will append a 
             # 'table' making it 'highlightertable'.
-            cssclass: str = serializer.get('cssclass')
+            cssclass: str = serializer.data.get('cssclass')
 
             # Specify a list of lines to be highlighted in your result.
-            hl_lines: list = serializer.get('hl_lines')
+            hl_lines: list = serializer.data.get('hl_lines')
             
             # should the style selected also affect the overall code background?
             # defaults to False.
-            nobackground: bool = serializer.get('nobackground')
+            nobackground: bool = serializer.data.get('nobackground')
             
             # full is used to define if the user requires a full html
             # document, defaults to False
-            full: bool = serializer.get('full')
+            full: bool = serializer.data.get('full')
             
             # the title of the html document if full is set to True
-            title: str = serializer.get('title')
+            title: str = serializer.data.get('title')
 
             # separate is used along side 'full' argument to request a separate
             # css style result and a body result, default to False
-            separate: bool = serializer.get('seperate')
+            separate: bool = serializer.data.get('seperate')
             
             # prefix the css classes used when 'noclasses' is set to False
-            classprefix: str = serializer.get('classprefix')
+            classprefix: str = serializer.data.get('classprefix')
 
             # which formatter was selected by the user?
             if get_format.lower() in ['bbcode', 'bb']:
@@ -88,7 +89,7 @@ class Highlighter(APIView):
                 formatter = HtmlFormatter(
                     style=style, linenos=linenos, noclasses=noclasses,
                     wrapcode=True, nobackground=nobackground, cssclass=cssclass,
-                    hl_lines=hl_lines,
+                    hl_lines=hl_lines, lineseparator='<br>'
                 )
                 highlighted = highlight(code, lexer, formatter)
                 data = {"status": "success", "result": highlighted}

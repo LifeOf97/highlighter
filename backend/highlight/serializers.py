@@ -10,25 +10,27 @@ LANGUAGES = sorted([(lexer[1][0], lexer[0]) for lexer in LEXERS])
 # get and organize all styles in tuples 
 STYLES = sorted([(style, style) for style in get_all_styles()])
 # available formatters as @ version 0.1.1 (not released).
-FORMATTERS = sorted(
+FORMATTERS = sorted((
     ('bbcode', 'bbcode'),
+    ('html', 'html'),
     ('irc', 'irc'),
     ('rtf', 'rtf'),
     ('svg', 'svg'),
     ('text', 'text'),
     ('terminal', 'terminal'),
     ('terminal256', 'terminal256'),
-)
+))
 LINENUMBER = (
-    ('none', 'none')
+    ('none', 'none'),
     ('table', 'table'),
-    ('inline', 'inline')
+    ('inline', 'inline'),
 )
 
 class HighlighterSerializer(serializers.Serializer):
     """
     Serializer for the api post request.
     """
+    code = serializers.CharField(style={'base_template': 'textarea.html'})
     language = serializers.ChoiceField(choices=LANGUAGES, default='python')
     style = serializers.ChoiceField(choices=STYLES, default='default')
     formatter = serializers.ChoiceField(choices=FORMATTERS, default='html')
@@ -37,7 +39,8 @@ class HighlighterSerializer(serializers.Serializer):
     cssclass = serializers.CharField(required=False, default='highlighter')
     hl_lines = serializers.ListField(
         required=False,
-        child=serializers.IntegerField(min_value=1) #validator
+        default='[]',
+        # child=serializers.IntegerField(min_value=1) #validator
     )
     nobackground = serializers.BooleanField(required=False, default=False)
     full = serializers.BooleanField(required=False, default=False)
