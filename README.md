@@ -93,3 +93,8 @@ The succefull response of a valid request contains the following.
 
 * **Using axios API**
 * **Using fetch API**
+
+
+## Credits
+
+**Highlighter** depends fully on **Pygments** syntax-highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/)
