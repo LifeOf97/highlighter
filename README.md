@@ -67,5 +67,22 @@ Here are the config options for highlighting code snippets.
     noBackground: false, // default
     
     // prefix the css classes used when 'noclasses' is set 'class'
-    classPrefix: '', // default is an empty string
+    classPrefix: '' // default is an empty string
+}
+
+
+## Response Data
+
+The succefull response of a valid request contains the following.
+
+{
+    // The status of the reesponse.
+    status: ''success',
+    
+    // The result object containing the highlighted code data
+    // and styles if styling was set to 'css'
+    result: {
+        data: '',
+        styles: '',
+    }
 }
