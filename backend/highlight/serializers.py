@@ -20,11 +20,15 @@ FORMATTERS = sorted((
     ('terminal', 'terminal'),
     ('terminal256', 'terminal256'),
 ))
+# what kind of line number is required?
 LINENUMBER = (
     ('none', 'none'),
     ('table', 'table'),
     ('inline', 'inline'),
 )
+# css inline styling or class names?
+STYLINGS = (('inline', 'inline'), ('class', 'class'))
+
 
 class HighlighterSerializer(serializers.Serializer):
     """
@@ -35,8 +39,8 @@ class HighlighterSerializer(serializers.Serializer):
     style = serializers.ChoiceField(choices=STYLES, default='default')
     formatter = serializers.ChoiceField(choices=FORMATTERS, default='html')
     linenos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
-    noclasses = serializers.BooleanField(required=False, default=True)
-    cssclass = serializers.CharField(required=False, default='highlighter')
+    styling = serializers.ChoiceField(choices=STYLINGS, required=False, default='inline')
+    divclass = serializers.CharField(required=False, default='highlighter')
     hl_lines = serializers.ListField(
         required=False,
         default=[],
@@ -46,6 +50,6 @@ class HighlighterSerializer(serializers.Serializer):
     full = serializers.BooleanField(required=False, default=False)
     title = serializers.CharField(required=False)
     separate = serializers.BooleanField(required=False, default=False)
-    classprefix = serializers.CharField(required=False, max_length=10)
+    classprefix = serializers.CharField(required=False, max_length=10, default='')
 
     # This serializer does not create nor updates any model instance.

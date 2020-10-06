@@ -23,7 +23,8 @@ from pygments import highlight
 class Highlighter(APIView):
     """
     Class API view.
-    does not have an queryset attribute.
+    does not have an queryset attribute. And makes use of the pygments
+    python library.
 
     post:
     only allows post request along side the data(code text) to highlight.
@@ -50,12 +51,12 @@ class Highlighter(APIView):
             # styling or classes, if set to True inline styling is used and
             # the 'full, separate and other optional arguments will not take
             # effect, defaults to True
-            noclasses: bool = serializer.data.get('noclasses')
+            noclasses = True if serializer.data.get('styling') == 'inline' else False
             
             # class name to wrap the whole code block, defaults to highlighter,
             # NOTE: if linenos is set to table the cssclass name will append a 
             # 'table' making it 'highlightertable'.
-            cssclass: str = serializer.data.get('cssclass')
+            cssclass: str = serializer.data.get('divclass')
 
             # Specify a list of lines to be highlighted in your result.
             hl_lines: list = serializer.data.get('hl_lines')
@@ -66,14 +67,14 @@ class Highlighter(APIView):
             
             # full is used to define if the user requires a full html
             # document, defaults to False
-            full: bool = serializer.data.get('full')
+            # full: bool = serializer.data.get('full')
             
             # the title of the html document if full is set to True
-            title: str = serializer.data.get('title')
+            # title: str = serializer.data.get('title')
 
             # separate is used along side 'full' argument to request a separate
             # css style result and a body result, default to False
-            separate: bool = serializer.data.get('separate')
+            # separate: bool = serializer.data.get('separate')
             
             # prefix the css classes used when 'noclasses' is set to False
             classprefix: str = serializer.data.get('classprefix')
@@ -83,30 +84,56 @@ class Highlighter(APIView):
             if get_format.lower() in ['bbcode', 'bb']:
                 formatter = BBCodeFormatter(style=style, codetag=True, monofont=True)
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['html', 'htm']:
-                formatter = HtmlFormatter(
-                    style=style, linenos=linenos, noclasses=noclasses,
-                    wrapcode=True, nobackground=nobackground, cssclass=cssclass,
-                    hl_lines=hl_lines, lineseparator='<br>'
-                )
-                highlighted = highlight(code, lexer, formatter)
-                data = {'status': 'success', 'result': highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                if noclasses:
+                    formatter = HtmlFormatter(
+                        style=style, linenos=linenos, noclasses=noclasses,
+                        wrapcode=True, nobackground=nobackground, cssclass=cssclass,
+                        hl_lines=hl_lines, lineseparator='<br>',
+                    )
+                    highlighted = highlight(code, lexer, formatter)
+                    data = {
+                        'status': 'success',
+                        'result': {'data': highlighted}
+                    }
+
+                else:
+                    formatter = HtmlFormatter(
+                        style=style, linenos=linenos, noclasses=noclasses,
+                        wrapcode=True, nobackground=nobackground, cssclass=cssclass,
+                        hl_lines=hl_lines, lineseparator='<br>', classprefix=classprefix,
+                    )
+                    highlighted = highlight(code, lexer, formatter)
+                    styles = formatter.get_style_defs(F".{cssclass}")
+                    data = {
+                        'status': 'success',
+                        'result': {'data': highlighted, 'styles': styles}
+                    }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['irc']:
                 formatter = IRCFormatter(bg='dark', linenos=linenos)
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['rtf']:
                 formatter = RtfFormatter(style=style, fontsize=28)
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['svg']:
                 formatter = SvgFormatter(
@@ -114,31 +141,46 @@ class Highlighter(APIView):
                     fontsize='16px', linenos=linenos,
                 )
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['txt', 'text', 'null']:
                 formatter = NullFormatter()
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
             
             # the terminal formatters should only be used while in terminal interfaces
             elif get_format.lower() in ['terminal256', 'console256', '256']:
                 formatter = Terminal256Formatter(style=style)
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['terminal', 'console']:
                 formatter = TerminalFormatter(bg='dark', colorscheme=None, linenos=linenos)
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
-                return Response(data=data, status=status.HTTP_200_OK)
+                data = {
+                    'status': 'success',
+                    'result': {'data': highlighted}
+                }
+                return Response(data, status=status.HTTP_200_OK)
 
             else:
                 # if all is not well(error) run this code block statement.
-                data = {"status": "failed", "result" : None}
+                data = {
+                    'status': 'failed',
+                    'result': {'data' : None}
+                }
                 return Response(data, status=status.HTTP_404_NOT_FOUND)
 
         # else if the serializer is not valid run this statement.
