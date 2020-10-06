@@ -22,6 +22,11 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     default emacs friendly colorful autumn murphy manni monokai perldoc pastie borland trac native fruity bw vim vs tango rrt xcode igor paraiso-light paraiso-dark lovelace algol algol_nu arduino rainbow_dash abap solarized-dark solarized-light sas stata stata-light stata-dark inkpot
 
 
+## Usage
+**CDN** only
+coming soon.
+
+
 ## Request Config
 
 Here are the config options for highlighting code snippets.  
@@ -97,4 +102,4 @@ The succefull response of a valid request contains the following.
 
 ## Credits
 
-**Highlighter** depends fully on **Pygments** syntax-highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/)
+**Highlighter** depends fully on **Pygments** syntax-highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/) for more insight.
