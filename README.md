@@ -4,7 +4,6 @@ An api backend used to **highlight** code snippet of any programming language.
 ## Features
 * **Code highlighter**.  
 Used in highlighting programming languages used in blogs, chat apps and any project requiring code samples.  
-
 **Formats Available**
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
     * HTML [Hypertext Markup Language](https://www.w3schools.com/html/html_intro.asp).
