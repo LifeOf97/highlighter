@@ -6,7 +6,7 @@ An api backend used to **highlight** code snippet of any programming language.
 ## Features
 
 * **Code highlighter**.  
-Used in highlighting programming languages used in blogs, chat apps and any project requiring code samples.  
+Used in highlighting programming languages used in blogs, chat apps and any project requiring code samples.
 
  * **Formats Available**
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
@@ -16,7 +16,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     * Terminal.
     * Terminal256.
     * Text.
-    * IRC.  
+    * IRC.
 
  * **Styles Available**:
     default emacs friendly colorful autumn murphy manni monokai perldoc pastie borland trac native fruity bw vim vs tango rrt xcode igor paraiso-light paraiso-dark lovelace algol algol_nu arduino rainbow_dash abap solarized-dark solarized-light sas stata stata-light stata-dark inkpot
