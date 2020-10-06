@@ -6,7 +6,8 @@ An api backend used to **highlight** code snippet of any programming language.
 
 * **Code highlighter**.  
 Used in highlighting programming languages used in blogs, chat apps and any project requiring code samples.  
-This can return the highlighted code in any of this format:-  
+
+ ### Formats Available
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
     * HTML [Hypertext Markup Language](https://www.w3schools.com/html/html_intro.asp).
     * RTF [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format).
@@ -16,6 +17,44 @@ This can return the highlighted code in any of this format:-
     * Text.
     * IRC.
 
+ ### Styles Available
+    * default
+    * emacs
+    * friendly
+    * colorful
+    * autumn
+    * murphy
+    * manni
+    * monokai
+    * perldoc
+    * pastie
+    * borland
+    * trac
+    * native
+    * fruity
+    * bw
+    * vim
+    * vs
+    * tango
+    * rrt
+    * xcode
+    * igor
+    * paraiso-light
+    * paraiso-dark
+    * lovelace
+    * algol
+    * algol_nu
+    * arduino
+    * rainbow_dash
+    * abap
+    * solarized-dark
+    * solarized-light
+    * sas
+    * stata
+    * stata-light
+    * stata-dark
+    * inkpot
+
 ## Request Config
 
 Here are the config options for highlighting code snippets.  
@@ -23,22 +62,22 @@ Here are the config options for highlighting code snippets.
 
 ```javascript
 {
-    // code snippet to be highlighted. Required.
+    // Code snippet to be highlighted. Required.
     code: '',
 
     // Programming language of the code snippet to be highlighted. Required. 
     language: 'python', // default
 
     // Syntax highlighting style.
-    style: 'emacs', // default
+    style: 'default', // default
 
     // What format would you like to retrieve your code snippet. Required.
-    get_format: 'html', // default
+    getFormat: 'html', // default
 
     // linenos is used to request if the result should have line numbers
     // or not, this can be one of ['inline', 'table', False], defaults to
     // False, no line numbers.
-    linenos: false, // default
+    lineNos: false, // default
     
     // noclasses is used to define if the user requires inline css
     // styling or classes, this can be one of ['inline', 'class']
@@ -48,16 +87,18 @@ Here are the config options for highlighting code snippets.
     // defaults to highlighter,
     // NOTE: if linenos is set to table this will append a 'table' making 
     // to it making it 'highlightertable'.
-    cssclass: 'highlighter', // default
+    divClass: 'highlighter', // default
 
     // Specify a list of line numbers to be highlighted in your code snippet
-    // this should be a array of numbers. Defaults to an empty array.
-    hl_lines: [], 
+    // this should be an array of numbers. Defaults to an empty array.
+    hlLines: [], 
     
-    // should the syntax highlighting style selected also affect the
-    // overall code background?
-    nobackground: false, // default
+    // If set to 'true', the syntax highlighting style won't output the
+    // background color of the code block, leaving this to you to style
+    // the background color of the code block when returned in the
+    // response data.
+    noBackground: false, // default
     
     // prefix the css classes used when 'noclasses' is set 'class'
-    classprefix: '', // default is an empty string
+    classPrefix: '', // default is an empty string
 }
