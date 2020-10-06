@@ -30,7 +30,7 @@ coming soon.
 ## Request Config
 
 Here are the config options for highlighting code snippets.  
->NOTE: this should be a **POST** request at all times as **GET** request is not supported.
+>NOTE: this should be made through a **POST** request at all times as **GET** request is not supported.
 
 ```javascript
 {
