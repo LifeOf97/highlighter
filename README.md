@@ -1,9 +1,7 @@
 # Highlighter
-
 An api backend used to **highlight** code snippet of any programming language.
 
 ## Features
-
 * **Code highlighter**.  
 Used in highlighting programming languages used in blogs, chat apps and any project requiring code samples.  
 
@@ -20,8 +18,8 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
 **Styles Available**:
     default emacs friendly colorful autumn murphy manni monokai perldoc pastie borland trac native fruity bw vim vs tango rrt xcode igor paraiso-light paraiso-dark lovelace algol algol_nu arduino rainbow_dash abap solarized-dark solarized-light sas stata stata-light stata-dark inkpot
 
-## Request Config
 
+## Request Config
 Here are the config options for highlighting code snippets.  
 >NOTE: this should be a **POST** request at all times as **GET** request is not supported.
 
