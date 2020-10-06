@@ -175,8 +175,8 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            else:
                 # if all is not well(error) run this code block statement.
+            else:
                 data = {
                     'status': 'failed',
                     'result': {'data' : None}
