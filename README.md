@@ -78,7 +78,7 @@ The succefull response of a valid request contains the following.
 ```javascript
 {
     // The status of the reesponse.
-    status: ''success',
+    status: 'success',
     
     // The result object containing the highlighted code data
     // and styles if styling was set to 'css'
