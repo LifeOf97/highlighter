@@ -69,12 +69,13 @@ Here are the config options for highlighting code snippets.
     // prefix the css classes used when 'noclasses' is set 'class'
     classPrefix: '' // default is an empty string
 }
-
+```
 
 ## Response Data
 
 The succefull response of a valid request contains the following.
 
+```javascript
 {
     // The status of the reesponse.
     status: ''success',
@@ -86,3 +87,4 @@ The succefull response of a valid request contains the following.
         styles: '',
     }
 }
+```
