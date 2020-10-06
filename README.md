@@ -23,7 +23,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
 
 
 ## Usage
-**CDN** only
+**CDN** only  
 coming soon.
 
 
