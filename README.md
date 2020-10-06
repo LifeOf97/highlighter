@@ -88,3 +88,9 @@ The succefull response of a valid request contains the following.
     }
 }
 ```
+
+
+## Examples
+
+* **Using Axios API**
+* **Using Fetch API**
