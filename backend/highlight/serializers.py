@@ -39,7 +39,7 @@ class HighlighterSerializer(serializers.Serializer):
     cssclass = serializers.CharField(required=False, default='highlighter')
     hl_lines = serializers.ListField(
         required=False,
-        default='[]',
+        default=[],
         # child=serializers.IntegerField(min_value=1) #validator
     )
     nobackground = serializers.BooleanField(required=False, default=False)

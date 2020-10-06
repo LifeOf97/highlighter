@@ -9,6 +9,6 @@ appname = 'highlight'
 
 urlpatterns = [
     path('api/', include([
-        path('', views.Highlighter.as_view(), name='highliter'),
+        path('highlighter/', views.Highlighter.as_view(), name='highliter'),
     ])),
 ]

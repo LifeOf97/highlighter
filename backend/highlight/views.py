@@ -31,9 +31,9 @@ class Highlighter(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, format=None):
-        serializer = HighlighterSerializer(data=request.data, context={'request', request})
-
-        # if the serializer is valid run this statement.
+        serializer = HighlighterSerializer(data=request.data, context={'request': request})
+        
+        # if the serializer is valid, run this statement.
         if serializer.is_valid():
             code: str = serializer.data.get('code')
             lexer = get_lexer_by_name(serializer.data.get('language'))
@@ -58,7 +58,7 @@ class Highlighter(APIView):
             cssclass: str = serializer.data.get('cssclass')
 
             # Specify a list of lines to be highlighted in your result.
-            hl_lines: list = serializer.data.get('hl_lines')
+            hl_lines: list = serializer.data.get()
             
             # should the style selected also affect the overall code background?
             # defaults to False.
@@ -73,10 +73,11 @@ class Highlighter(APIView):
 
             # separate is used along side 'full' argument to request a separate
             # css style result and a body result, default to False
-            separate: bool = serializer.data.get('seperate')
+            separate: bool = serializer.data.get('separate')
             
             # prefix the css classes used when 'noclasses' is set to False
             classprefix: str = serializer.data.get('classprefix')
+     
 
             # which formatter was selected by the user?
             if get_format.lower() in ['bbcode', 'bb']:
@@ -92,7 +93,7 @@ class Highlighter(APIView):
                     hl_lines=hl_lines, lineseparator='<br>'
                 )
                 highlighted = highlight(code, lexer, formatter)
-                data = {"status": "success", "result": highlighted}
+                data = {'status': 'success', 'result': highlighted}
                 return Response(data=data, status=status.HTTP_200_OK)
 
             elif get_format.lower() in ['irc']:

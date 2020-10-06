@@ -1,3 +1,4 @@
+from corsheaders.defaults import default_headers, default_methods
 from pathlib import Path
 import os
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,3 +127,20 @@ REST_FRAMEWORK = {
 }
 
 # DJANGO CORS HEADERS SETTINGS
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+    'http://192.168.1.101:8000',
+    'http://127.0.0.1:5500',
+    'http://localhost:5500',
+    'http://192.168.1.101:5500',
+    'http://127.0.0.1:5000',
+    'http://localhost:5000',
+    'http://192.168.1.101:5000',
+]
+CORS_ALLOW_METHODS = list(default_methods) + []
+CORS_ALLOW_HEADERS = list(default_headers) + []
+CORS_PREFLIGHT_MAX_AGE = 86400
+CORS_ALLOW_CREDENTIALS = True
+# CORS_EXPOSE_HEADERS = []
