@@ -36,20 +36,20 @@ class HighlighterSerializer(serializers.Serializer):
     """
     code = serializers.CharField(style={'base_template': 'textarea.html'})
     language = serializers.ChoiceField(choices=LANGUAGES, default='python')
-    style = serializers.ChoiceField(choices=STYLES, default='default')
-    formatter = serializers.ChoiceField(choices=FORMATTERS, default='html')
-    linenos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
+    style = serializers.ChoiceField(choices=STYLES, default='emacs')
+    getFormat = serializers.ChoiceField(choices=FORMATTERS, default='html')
+    lineNos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
     styling = serializers.ChoiceField(choices=STYLINGS, required=False, default='inline')
-    divclass = serializers.CharField(required=False, default='highlighter')
-    hl_lines = serializers.ListField(
+    divClass = serializers.CharField(required=False, default='highlighter')
+    hlLines = serializers.ListField(
         required=False,
         default=[],
         # child=serializers.IntegerField(min_value=1) #validator
     )
-    nobackground = serializers.BooleanField(required=False, default=False)
-    full = serializers.BooleanField(required=False, default=False)
-    title = serializers.CharField(required=False)
-    separate = serializers.BooleanField(required=False, default=False)
-    classprefix = serializers.CharField(required=False, max_length=10, default='')
+    noBackground = serializers.BooleanField(required=False, default=False)
+    classPrefix = serializers.CharField(required=False, max_length=10, default='')
+    # full = serializers.BooleanField(required=False, default=False)
+    # title = serializers.CharField(required=False)
+    # separate = serializers.BooleanField(required=False, default=False)
 
     # This serializer does not create nor updates any model instance.

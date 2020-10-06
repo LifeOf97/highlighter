@@ -39,13 +39,13 @@ class Highlighter(APIView):
             code: str = serializer.data.get('code')
             lexer = get_lexer_by_name(serializer.data.get('language'))
             style = get_style_by_name(serializer.data.get('style'))
-            get_format: str = serializer.data.get('formatter')
+            getFormat: str = serializer.data.get('getFormat')
 
             #---more options, for formatters that require this settings.
             # linenos is used to request if the result should have line numbers
             # or not, this can be one of ['inline', 'table', False], defaults to
             # False, no line numbers
-            linenos = False if serializer.data.get('linenos') == 'none' else serializer.data.get('linenos')
+            linenos = False if serializer.data.get('lineNos') == 'none' else serializer.data.get('lineNos')
             
             # noclasses is used to define if the user requires inline css
             # styling or classes, if set to True inline styling is used and
@@ -56,14 +56,14 @@ class Highlighter(APIView):
             # class name to wrap the whole code block, defaults to highlighter,
             # NOTE: if linenos is set to table the cssclass name will append a 
             # 'table' making it 'highlightertable'.
-            cssclass: str = serializer.data.get('divclass')
+            cssclass: str = serializer.data.get('divClass')
 
             # Specify a list of lines to be highlighted in your result.
-            hl_lines: list = serializer.data.get('hl_lines')
+            hl_lines: list = serializer.data.get('hlLines')
             
             # should the style selected also affect the overall code background?
             # defaults to False.
-            nobackground: bool = serializer.data.get('nobackground')
+            nobackground: bool = serializer.data.get('noBackground')
             
             # full is used to define if the user requires a full html
             # document, defaults to False
@@ -77,11 +77,11 @@ class Highlighter(APIView):
             # separate: bool = serializer.data.get('separate')
             
             # prefix the css classes used when 'noclasses' is set to False
-            classprefix: str = serializer.data.get('classprefix')
+            classprefix: str = serializer.data.get('classPrefix')
      
 
             # which formatter was selected by the user?
-            if get_format.lower() in ['bbcode', 'bb']:
+            if getFormat.lower() in ['bbcode', 'bb']:
                 formatter = BBCodeFormatter(style=style, codetag=True, monofont=True)
                 highlighted = highlight(code, lexer, formatter)
                 data = {
@@ -90,7 +90,7 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['html', 'htm']:
+            elif getFormat.lower() in ['html', 'htm']:
                 if noclasses:
                     formatter = HtmlFormatter(
                         style=style, linenos=linenos, noclasses=noclasses,
@@ -117,7 +117,7 @@ class Highlighter(APIView):
                     }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['irc']:
+            elif getFormat.lower() in ['irc']:
                 formatter = IRCFormatter(bg='dark', linenos=linenos)
                 highlighted = highlight(code, lexer, formatter)
                 data = {
@@ -126,7 +126,7 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['rtf']:
+            elif getFormat.lower() in ['rtf']:
                 formatter = RtfFormatter(style=style, fontsize=28)
                 highlighted = highlight(code, lexer, formatter)
                 data = {
@@ -135,7 +135,7 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['svg']:
+            elif getFormat.lower() in ['svg']:
                 formatter = SvgFormatter(
                     style=style, nowrap=False, fontfamily='monospace',
                     fontsize='16px', linenos=linenos,
@@ -147,7 +147,7 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['txt', 'text', 'null']:
+            elif getFormat.lower() in ['txt', 'text', 'null']:
                 formatter = NullFormatter()
                 highlighted = highlight(code, lexer, formatter)
                 data = {
@@ -157,7 +157,7 @@ class Highlighter(APIView):
                 return Response(data, status=status.HTTP_200_OK)
             
             # the terminal formatters should only be used while in terminal interfaces
-            elif get_format.lower() in ['terminal256', 'console256', '256']:
+            elif getFormat.lower() in ['terminal256', 'console256', '256']:
                 formatter = Terminal256Formatter(style=style)
                 highlighted = highlight(code, lexer, formatter)
                 data = {
@@ -166,7 +166,7 @@ class Highlighter(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            elif get_format.lower() in ['terminal', 'console']:
+            elif getFormat.lower() in ['terminal', 'console']:
                 formatter = TerminalFormatter(bg='dark', colorscheme=None, linenos=linenos)
                 highlighted = highlight(code, lexer, formatter)
                 data = {
