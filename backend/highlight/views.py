@@ -58,7 +58,7 @@ class Highlighter(APIView):
             cssclass: str = serializer.data.get('cssclass')
 
             # Specify a list of lines to be highlighted in your result.
-            hl_lines: list = serializer.data.get()
+            hl_lines: list = serializer.data.get('hl_lines')
             
             # should the style selected also affect the overall code background?
             # defaults to False.
