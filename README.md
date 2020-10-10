@@ -1,6 +1,6 @@
 # Highlighter
 
-An api backend used to **highlight** code snippet of any programming language.
+A code **syntax highlighter** request api, which can handle most programming languages and text formats.
 
 
 ## Features
