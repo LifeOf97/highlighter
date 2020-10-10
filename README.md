@@ -41,6 +41,7 @@ Here are the config options for highlighting code snippets.
     language: 'python', // default
 
     // Syntax highlighting style.
+    // checkout the available styles at the features section of this readme.
     style: 'default', // default
 
     // What format would you like to retrieve your code snippet. Required.
