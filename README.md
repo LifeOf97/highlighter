@@ -101,4 +101,4 @@ The succefull response of a valid request contains the following.
 
 ## Credits
 
-**Highlighter** depends fully on **Pygments** syntax-highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/) for more insight.
+**Highlighter** depends fully on **Pygments** which syntax highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/) for more insight.
