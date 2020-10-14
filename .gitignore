@@ -1,3 +1,4 @@
+# PYTHON
 # ignore the virtual environment
 backend/venv/
 
@@ -7,12 +8,15 @@ backend/pygment.txt
 backend/formatters.txt
 
 # Django stuff:
-static/
-media/
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+backend/*.log
+backend/static/
+backend/media/
+backend/db.sqlite3
+backend/db.sqlite3-journal
+
+#JAVASCRIPT (node)
+# Dependency directories
+frontend/highlight/node_modules/
 
 # vscode stuff
 .vscode/
