@@ -1,18 +1,57 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!-- eslint-disable max-len -->
+  <div id="home" class="w-full h-full bg-white overflow-x-hidden">
+    <!-- top nav and hero div -->
+    <header id="header" class="w-full bg-teal-200 shadow-sm">
+      <!-- start of hero div -->
+      <div class="h-66 w-11/12 mx-auto flex pt-6 md:pt-10">
+        <div class="flex-1 text-5xl md:text-6xl font-black tracking-tighter">
+          <p class="p-0 text-transparent bg-clip-text bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500">Just</p>
+          <p class="p-0 text-transparent bg-clip-text bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500">Highlight Your Code!</p>
+        </div>
+      </div>
+      <!-- end of hero div -->
+    </header>
+    <!-- end of top nav and hero div -->
+    <!-- start od editor div -->
+    <aside id="editor" class="md:absolute w-full mx-auto h-auto">
+      <div class="w-11/12 h-auto mx-auto flex justify-end">
+        <router-view :class="'w-full h-auto md:w-7/12 -mt-20 bg-gray-800'"></router-view>
+      </div>
+    </aside>
+    <!-- end of eitor div -->
+    <!-- start of info div -->
+    <aside id="info" class="w-11/12 mx-auto mt-8 md:py-12 flex flex-wrap justify-between md:flex-col md:space-y-12">
+      <div class="flex-initial flex-grow mb-12 md:mb-0">
+        <h3 class="text-2xl font-black text-black">Syntax Highlighter.</h3>
+        <p class="text-sm text-gray-600 font-medium leading-5">
+          JustHighlight is a code snippet <br/>
+          syntax highlighter, that can be used <br/>
+          in your blog apps, websites and more.
+        </p>
+      </div>
+      <div class="flex-initial flex-grow mb-12 md:mb-0">
+        <h3 class="text-2xl font-black text-black">Support & Styling.</h3>
+        <p class="text-sm text-gray-600 font-medium leading-5">
+          It supports over 400 programming <br>
+          languages and text formats.
+        </p>
+      </div>
+      <div class="flex-initial flex-grow mb-12 md:mb-0">
+        <h3 class="text-2xl font-black text-black">Availability & Usage.</h3>
+        <p class="text-sm text-gray-600 font-medium leading-5">
+          It is available over an API, <br>
+          it can be used along side any frontend <br>
+          framework that can make requests to an api
+        </p>
+      </div>
+    </aside>
+    <!-- end of info div -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld,
-  },
 };
 </script>

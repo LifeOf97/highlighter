@@ -123,7 +123,10 @@ MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 # DJANGO REST FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
-
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.JSONRenderer',
+    ],
 }
 
 # DJANGO CORS HEADERS SETTINGS

@@ -12,14 +12,42 @@ from pygments.formatters.img import (
     ImageFormatter, GifImageFormatter,
 )
 from .serializers import HighlighterSerializer
-from pygments.lexers import get_lexer_by_name
-from pygments.styles import get_style_by_name
+from pygments.lexers import get_lexer_by_name, get_all_lexers
+from pygments.styles import get_style_by_name, get_all_styles
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from pygments import highlight
 
 # create class api
+class Options(APIView):
+    """
+    Class based API view to get all highlighter opotions.
+
+    get:
+    only allows get method.
+    """
+    languages = sorted([lang[1][0] for lang in get_all_lexers()])
+    styles = sorted([style for style in get_all_styles()])
+    formats = sorted(['bbcode', 'html', 'irc', 'rtf', 'svg', 'text', 'terminal', 'terminal256'])
+
+    def get(self, request, option=None, format=None):
+        if option in ['language', 'languages']:
+            data = {"result": {"data": self.languages}}
+            return Response(data, status=status.HTTP_200_OK )
+        
+        elif option in ['format', 'formats']:
+            data = {"result": {"data": self.formats}}
+            return Response(data, status=status.HTTP_200_OK )
+        
+        elif option in ['style', 'styles']:
+            data = {"result": {"data": self.styles}}
+            return Response(data, status=status.HTTP_200_OK )
+        
+        else:
+            return Response({"result" : {"data": "error"}}, status=status.HTTP_404_NOT_FOUND)
+
+
 class Highlighter(APIView):
     """
     Class API view.
