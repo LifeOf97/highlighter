@@ -3,8 +3,8 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# or like this BASE_DIR.joinpath('path')
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -124,7 +124,6 @@ MEDIA_ROOT = BASE_DIR.joinpath('media')
 # DJANGO REST FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.renderers.JSONRenderer',
     ],
 }
@@ -141,6 +140,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5000',
     'http://localhost:5000',
     'http://192.168.1.101:5000',
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+    'http://192.168.1.101:8080',
 ]
 CORS_ALLOW_METHODS = list(default_methods) + []
 CORS_ALLOW_HEADERS = list(default_headers) + []

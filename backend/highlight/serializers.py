@@ -6,7 +6,7 @@ from pygments.styles import get_all_styles
 # get all lexers in list format
 LEXERS = [lexer for lexer in get_all_lexers()]
 # organize all lexers in tuples with two values ('lexer', 'LEXER')
-LANGUAGES = sorted([(lexer[1][0], lexer[0]) for lexer in LEXERS])
+LANGUAGES = sorted([(lexer[0].lower(), lexer[1][0]) for lexer in LEXERS])
 # get and organize all styles in tuples 
 STYLES = sorted([(style, style) for style in get_all_styles()])
 # available formatters as @ version 0.1.1 (not released).
