@@ -4,6 +4,6 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/api')),
-    path('', include('highlight.urls')),
+    path('', RedirectView.as_view(url='/highlighter/api')),
+    path('', include('highlight.urls', namespace='highlighter')),
 ]
