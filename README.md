@@ -85,10 +85,10 @@ The succefull response of a valid request contains the following.
     status: 'success',
     
     // The result object containing the highlighted code data
-    // and styles if styling was set to 'css'
+    // and style
     result: {
         data: '',
-        styles: '',
+        styles: '', // only available when styling is set to class.
     }
 }
 ```
