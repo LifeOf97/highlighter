@@ -1,5 +1,8 @@
 <template>
-    <div class="absolute right-0 top-0 mt-16 w-48 h-56 overflow-y-auto bg-white rounded-md shadow-white-md z-10">
+<!-- eslint-disable max-len -->
+    <div
+      :class="position"
+      class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white rounded-md shadow-white-xl z-10">
       <ul>
         <li
           v-for="(item, index) in filterOptions"
@@ -28,6 +31,7 @@ export default {
   props: {
     options: { type: Array, required: true },
     filter: { type: String, required: false },
+    position: { type: String, required: false },
   },
   emits: ['option-selected'],
   data() {
