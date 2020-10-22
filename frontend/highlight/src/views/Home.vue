@@ -14,9 +14,9 @@
     </header>
     <!-- end of top nav and hero div -->
     <!-- start od editor div -->
-    <aside id="editor" class="md:absolute w-full mx-auto h-auto">
-      <div class="w-11/12 h-auto mx-auto flex justify-end">
-        <router-view :class="'w-full h-auto md:w-7/12 -mt-20 bg-gray-800'"></router-view>
+    <aside id="editor" class="md:absolute w-full mx-auto h-auto flex justify-end">
+      <div class="w-11/12 mx-auto md:mx-0 md:w-6/12 xl:mr-12 bg-gray-800 rounded-b-md border-t border-gray-600 rounded-md shadow-2xl overflow-hidden -mt-20">
+        <code-editor />
       </div>
     </aside>
     <!-- end of eitor div -->
@@ -51,7 +51,10 @@
 </template>
 
 <script>
+import CodeEditor from './CodeEditor.vue';
+
 export default {
   name: 'Home',
+  components: { CodeEditor },
 };
 </script>

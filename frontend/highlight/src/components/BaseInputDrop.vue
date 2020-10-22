@@ -1,9 +1,13 @@
 <template>
 <!-- eslint-disable max-len -->
     <div class="inline-flex flex-col">
+      <!-- base input label -->
       <label
         for="menu-input"
-        class="font-black flex-initial text-sm text-gray-500">{{label}}</label>
+        class="font-black flex-initial text-sm text-gray-500">
+        {{label}}
+      </label>
+      <!-- base input field and dropdown button -->
       <div
         :class="[isFocused ? 'border-gray-200' : 'border-gray-600']"
         class="relative border rounded-md mt-1 p-1 w-40 flex items-center hover:border-gray-200">
@@ -11,7 +15,6 @@
           type="text"
           id="menu-input"
           autocomplete="off"
-          :placeholder="placeholder"
           v-bind="$attrs"
           :value="modelValue"
           @input="$emit('update:modelValue', $event.target.value)"
@@ -19,7 +22,7 @@
           @focusout="focusout()"
           aria-haspopup="listbox"
           aria-required="true"
-          class="bg-gray-800 text-sm text-gray-200 w-32 font-normal focus:outline-none" />
+          class="bg-gray-800 text-sm text-gray-200 w-32 font-normal focus:outline-none placeholder-gray-400" />
         <button
           @click="isActive = !isActive, toggleMenuBtn(isActive)"
           class="mb-1 absolute w-6 right-0 focus:outline-none">
@@ -39,7 +42,6 @@ export default {
     modelValue: String,
     modelModifiers: { default: () => ({}) },
     label: { type: String, required: false },
-    placeholder: { type: String, required: false },
     menuValue: { type: Boolean, required: false },
   },
   emits: ['input', 'focusin', 'focusout', 'toggle-menu-btn', 'update:modelValue'],
@@ -51,12 +53,14 @@ export default {
   },
   watch: {
     menuValue(newValue) {
+    // we react to changes in the menuValue prop
       this.isActive = newValue;
     },
   },
   methods: {
     toggleMenuBtn(value) {
       // this event is used to toggle the menu option if available
+      // this can be one of true/false
       this.$emit('toggle-menu-btn', value);
     },
     focusin() {

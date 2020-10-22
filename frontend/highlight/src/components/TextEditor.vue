@@ -1,5 +1,6 @@
 <template>
-    <div id="text-editor" class="">
+<!-- eslint-disable max-len -->
+    <div id="text-editor">
         <textarea
           v-bind="$attrs"
           :value="modelValue"
@@ -11,7 +12,9 @@
 <script>
 export default {
   name: 'TextEditor',
-  props: ['modelValue'],
   inheritAttrs: false,
+  props: {
+    modelValue: { type: String, required: false },
+  },
 };
 </script>

@@ -21,6 +21,7 @@
         leave-active-class="transition transform duration-200">
         <base-menu
           v-if="menu"
+          :position="position"
           :options="options"
           :filter="selected"
           @option-selected="menuOptionSelected" />
@@ -36,8 +37,9 @@ export default {
   name: 'TextSelectMenu',
   props: {
     options: { type: Array, required: true },
+    position: { type: String, required: false },
     label: { type: String, required: false, default: 'label' },
-    placeholder: { type: String, required: false, default: '---' },
+    placeholder: { type: String, required: true },
   },
   emits: ['option-selected'],
   components: { BaseInputDrop, BaseMenu },

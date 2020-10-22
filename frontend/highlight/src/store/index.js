@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 // axios default
-axios.defaults.baseURL = 'http://192.168.1.101:8000/highlighter/api/';
+axios.defaults.baseURL = 'http://192.168.1.101:8000/highlighter/api';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.Accept = 'application/json; indent=4';
 axios.defaults.timeout = 0;
@@ -25,6 +25,9 @@ export default createStore({
       result: '',
     },
   },
+  // #################
+  // STATE MUTATION.
+  // #################
   mutations: {
     // mutation to update the loading state.
     updateLoading(state, payload) {
@@ -42,48 +45,52 @@ export default createStore({
     setStylesOptions(state, payload) {
       state.options.styles = payload.styles;
     },
-    // mutation to update the highlight objects state.
+    // mutation to set/update the highlight objects state.
     toHighlight(state, payload) {
       state.highlight.code = payload.code;
       state.highlight.style = payload.style;
       state.highlight.format = payload.format;
       state.highlight.language = payload.language;
     },
+    // mutation to set/update the highlighted object state.
     updateHighlighted(state, payload) {
       state.highlighted.result = payload.highlighted;
     },
   },
+  // ###############
+  // STATE ACTIONS
+  // ###############
   actions: {
     // action to fetch and commit mutation for all available languages.
     fetchLanguages(context) {
-      axios.get('options/languages/')
+      axios.get('/options/languages/')
         .then((response) => context.commit('setLanguagesOptions', { languages: response.data.result }))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.response));
     },
     // action to fetch and commit mutation for all available formats.
     fetchFormats(context) {
-      axios.get('options/formats/')
+      axios.get('/options/formats/')
         .then((response) => context.commit('setFormatsOptions', { formats: response.data.result }))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.response));
     },
     // action to fetch and commit mutation for all available styles.
     fetchStyles(context) {
-      axios.get('options/styles/')
+      axios.get('/options/styles/')
         .then((response) => context.commit('setStylesOptions', { styles: response.data.result }))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.response));
     },
-    // action to update the highlight objects data.
+    // action to commit the mutation to update the highlight objects data.
     highlightDetails(context, payload) {
       context.commit('toHighlight', payload);
     },
     // action to highlight the code.
     async highlightCode(context, payload) {
       // first, set the loading state to true, by committing the
-      // updateLoading mutation and passing the payload.loading
+      // updateLoading mutation and passing this payload.loading
       // data as the payload.
       context.commit('updateLoading', payload.loading);
       // then dispatch the highlightDetails action to update the
-      // highlight object states, passing the payload.highlight
+      // highlight object states, passing this payload.highlight
       // data as its payload.
       await context.dispatch('highlightDetails', payload.highlight);
       // then get the highlight object datas as the data to be sent
@@ -97,24 +104,27 @@ export default createStore({
       };
       // then make a post request to the highlighter api backend,
       // passing the data as payload to be highlighted.
-      await axios.post('highlight/', data)
+      await axios.post('/highlight/', data)
         .then((response) => {
           // on success, commit the updateHighlighted mutation along
-          // side the its payload data to set the highlighted.result state to.
+          // side the its payload data to set/update the highlighted.result state.
           context.commit('updateHighlighted', { highlighted: response.data.result.data });
-          console.log(response.data);
+          console.log(response.data.result.data);
           // then set the loading state back to false by commiting
-          // the updateLoading mutation passing the false as its payload.
+          // the updateLoading mutation passing 'status: false' as its payload.
           context.commit('updateLoading', { status: false });
         })
         .catch((error) => {
           // if a request error occures, make sure to set the loading state back
-          // to false.
+          // to false and handle the error.
           context.commit('updateLoading', { status: false });
           console.log(error.response);
         });
     },
   },
+  // ###############
+  // STATE GETTERS
+  // ###############
   getters: {
     // getter for state languages.
     getLanguages(state) { return state.options.languages; },
@@ -124,7 +134,14 @@ export default createStore({
     getStyles(state) { return state.options.styles; },
     // getter for state highlight.
     getHighlightDetails(state) { return state.highlight; },
+    // getter for the loading state.
+    getLoading(state) { return state.loading; },
+    // getter for the highlighted code result.
+    getHighlighted(state) { return state.highlighted.result; },
   },
+  // ###############
+  // STATE MODULES
+  // ###############
   modules: {
   },
 });
