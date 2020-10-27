@@ -137,6 +137,9 @@ class Highlighter(APIView):
                 return Response(data, status=status.HTTP_200_OK)
 
             elif getFormat.lower() in ['svg']:
+                if linenos != False:
+                    linenos = True
+
                 formatter = SvgFormatter(
                     style=style, nowrap=False, fontfamily='monospace',
                     fontsize='16px', linenos=linenos,
