@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-    <div class="w-full h-full">
+    <div class="w-full h-full bg-gray-800">
       <form action="" method="post" @submit.prevent class="w-full flex flex-col">
         <!-- start of code editor options -->
         <div id="editor-options" class="flex-1 flex flex-wrap px-3 py-2 relative bg-gray-800">
@@ -28,13 +28,13 @@
         <!-- start of code editor text div -->
         <div class="flex-1 h-66">
           <!-- start of button to open code editor -->
-          <div v-if="codeGround" class="h-66 border-t border-gray-600 flex justify-center items-center bg-gray-800 bg-opacity-50 group">
+          <div v-if="codeEditor" class="h-66 border-t border-gray-600 flex justify-center items-center bg-gray-800 bg-opacity-50 group">
             <button
               type="button"
               @click="openEditor()"
               class="px-2 py-1 rounded-md text-lg text-white font-medium bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500
               group-hover:animate-bounce focus:outline-none">
-                Code Ground
+                Code Editor
             </button>
           </div>
           <!-- end of button to open code editor -->
@@ -47,10 +47,11 @@
             leave-to-class="scale-0 opacity-0"
             leave-from-class=""
             leave-active-class="transition transform duration-300">
-            <div v-if="!codeGround">
+            <div v-if="!codeEditor">
               <text-editor
                 autofocus
                 :rows="10"
+                ref="texteditor"
                 v-model="code"
                 placeholder="Enter code here..."
                 class="w-full h-auto resize-none outline-none text-white bg-gray-700 p-4 placeholder-gray-400" />
@@ -60,10 +61,24 @@
           <!-- end of code editor div -->
         </div>
         <!-- start of code editor submit button div -->
-        <div
-          v-if="!codeGround"
-          class="p-2 self-end">
+        <div v-if="!codeEditor" class="p-2 flex justify-between">
+          <div class="flex-1">
+            <transition
+              name="error"
+              enter-to-class=""
+              enter-from-class="opacity-0 translate-y-5"
+              enter-active-class="transition transform duration-100"
+              leave-from-class=""
+              leave-to-class="opacity-0 translate-y-5"
+              leave-active-class="transition transform duration-100">
+              <div v-if="error.state" class="">
+                <i class="fas fa-exclamation-circle text-md text-gray-300 mr-1"></i>
+                <span class="text-sm font-semibold text-red-500">{{error.message}}</span>
+              </div>
+            </transition>
+          </div>
           <button
+            type="submit"
             @click="highlight()"
             class="px-2 py-1 bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500 shadow-lg rounded-lg inline-flex place-items-center space-x-2
             hover:from-red-500 hover:via-pink-500 hover:to-blue-600 transition duration-500 ease-out focus:outline-none">
@@ -89,7 +104,8 @@ export default {
       style: '',
       format: '',
       language: '',
-      codeGround: true,
+      error: { state: false, message: '' },
+      codeEditor: true,
     };
   },
   components: { BaseTextSelectMenu, TextEditor },
@@ -107,9 +123,9 @@ export default {
       'fetchStyles', 'highlightCode',
     ]),
     openEditor() {
-      // method to open the code editor by setting the codeGround data Object
+      // method to open the code editor by setting the codeEditor data Object
       // to false
-      this.codeGround = false;
+      this.codeEditor = false;
     },
     setLanguage(value) {
       // method to update the selected language option
@@ -126,15 +142,29 @@ export default {
     highlight() {
       // method to call the store action passing in the required payload
       // to highlight the code snippet.
-      this.highlightCode({
-        loading: { status: true },
-        highlight: {
-          code: this.code.toLowerCase(),
-          style: this.style.toLowerCase(),
-          format: this.format.toLowerCase(),
-          language: this.language.toLowerCase(),
-        },
-      });
+      if (this.code.length > 0) {
+        // if statement returns true set the error.state to false
+        // and error.message to an empty string.
+        this.error.state = false;
+        this.error.message = '';
+        // then call the action used to highlight the code.
+        this.highlightCode({
+          loading: { status: true },
+          highlight: {
+            code: this.code.toLowerCase(),
+            style: this.style.toLowerCase(),
+            format: this.format.toLowerCase(),
+            language: this.language.toLowerCase(),
+          },
+        });
+        // also emit an event to prompt the change of component.
+        this.$emit('update:component', 'CodeResult');
+      } else {
+        // else if this statement returns false then set the error.state
+        // to true and the error.message to a warning message.
+        this.error.state = true;
+        this.error.message = 'Please type in some code snippet.';
+      }
     },
   },
 };

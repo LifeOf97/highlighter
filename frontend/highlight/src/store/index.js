@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 // axios default
-axios.defaults.baseURL = 'http://192.168.1.101:8000/highlighter/api';
+axios.defaults.baseURL = 'http://192.168.43.208:8000/highlighter/api';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.Accept = 'application/json; indent=4';
 axios.defaults.timeout = 0;
@@ -99,7 +99,7 @@ export default createStore({
       const data = {
         code: context.getters.getHighlightDetails.code,
         style: context.getters.getHighlightDetails.style,
-        format: context.getters.getHighlightDetails.format,
+        getFormat: context.getters.getHighlightDetails.format,
         language: context.getters.getHighlightDetails.language,
       };
       // then make a post request to the highlighter api backend,
@@ -109,7 +109,6 @@ export default createStore({
           // on success, commit the updateHighlighted mutation along
           // side the its payload data to set/update the highlighted.result state.
           context.commit('updateHighlighted', { highlighted: response.data.result.data });
-          console.log(response.data.result.data);
           // then set the loading state back to false by commiting
           // the updateLoading mutation passing 'status: false' as its payload.
           context.commit('updateLoading', { status: false });

@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len -->
   <div id="nav" class="bg-white">
     <!-- start of top nav -->
-    <nav id="topNav" class="w-full bg-teal-200">
+    <nav id="topNav" class="w-full bg-teal-300">
       <div class="py-6 w-11/12 mx-auto flex flex-col items-center sm:flex-row md:justify-between">
         <!-- logo -->
         <div class="flex-initial md:flex-1 mb-4 sm:mb-0">
@@ -23,8 +23,7 @@
               <router-link
                 v-if="routeName === 'Home'"
                 :to="{name: 'Docs'}"
-                :class="'flex px-2 py-1 justify-center items-center space-x-2'">
-                  <i class="fab fa-readme text-md text-gray-500 group-hover:text-pink-500 transition duration-500"></i>
+                :class="'flex px-2 py-1 justify-center items-center'">
                   <span class="font-semibold text-base text-gray-900">Docs</span>
               </router-link>
               <router-link v-else :to="{name: 'Home'}" class="font-semibold text-base text-gray-900 px-2 py-1">Home</router-link>
@@ -49,7 +48,7 @@
     <router-view />
     <!-- end of router view -->
     <!-- start of footer -->
-    <footer class="flex justify-between w-11/12 mx-auto mb-4">
+    <footer class="flex flex-col mt-10 sm:mt-0 sm:flex-row justify-between items-center w-11/12 mx-auto mb-4">
       <div>
         <span class="text-xs font-semibold text-gray-500">JustHighlight</span>
         <i class="fas fa-copyright text-xs text-gray-900 ml-2 mr-1"></i>
