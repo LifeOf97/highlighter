@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 // axios default
-axios.defaults.baseURL = 'http://192.168.43.208:8000/highlighter/api';
+axios.defaults.baseURL = 'http://192.168.1.101:8000/highlighter/api';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.Accept = 'application/json; indent=4';
 axios.defaults.timeout = 0;
