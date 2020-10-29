@@ -15,7 +15,7 @@ SECRET_KEY = '7qq)k1o^#=_=cfu=(hckfgu66&4%l#xn1xxcm!k==7e16@t&5l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default=True)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.208']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.208', '192.168.1.101']
 
 
 # Application definition
@@ -132,17 +132,19 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
-    'http://localhost:8000',
-    'http://192.168.43.208:8000',
     'http://127.0.0.1:5500',
-    'http://localhost:5500',
-    'http://192.168.43.208:5500',
     'http://127.0.0.1:5000',
-    'http://localhost:5000',
-    'http://192.168.43.208:5000',
     'http://127.0.0.1:8080',
-    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+    'http://192.168.43.208:5000',
+    'http://192.168.43.208:5500',
+    'http://192.168.43.208:8000',
     'http://192.168.43.208:8080',
+    'http://192.168.1.101:5000',
+    'http://192.168.1.101:5500',
+    'http://192.168.1.101:8000',
+    'http://192.168.1.101:8080',
+
 ]
 CORS_ALLOW_METHODS = list(default_methods) + []
 CORS_ALLOW_HEADERS = list(default_headers) + []

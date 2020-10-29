@@ -93,6 +93,7 @@ export default {
   },
   methods: {
     updateComponent(value) {
+      // method to update the editor component
       this.current = value;
     },
   },

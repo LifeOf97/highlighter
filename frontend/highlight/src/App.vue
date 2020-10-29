@@ -12,7 +12,7 @@
         <div class="flex-1 flex justify-end divide-x divide-gray-500">
           <!-- start of version info -->
           <div
-            class="flex-initial flex place-items-center space-x-2 px-3 text-gray-500">
+            class="flex-initial flex place-items-center space-x-2 px-3 text-gray-600">
             <i class="fas fa-tag text-md"></i>
             <span class="font-bold text-sm">Version 1.0.1</span>
           </div>
@@ -31,11 +31,13 @@
             <!-- end of router links to docs and back to home page -->
             <!-- start of social links -->
             <div class="flex-initial flex place-items-center space-x-3 ml-3">
-              <a href="https://github.com/KMA-USS" target="_blank" class="text-gray-500 hover:text-pink-500">
-                <i class="fab fa-github text-md"></i>
+              <a href="https://github.com/KMA-USS" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
+                <i class="fab fa-github text-lg" title="github"></i>
+                <i class="absolute top-0 left-0 fab fa-github text-lg group-hover:animate-ping" title="github"></i>
               </a>
-              <a href="https://twitter.com/DBlackerMan" target="_blank" class="text-gray-500 hover:text-pink-500">
-                <i class="fab fa-twitter text-md"></i>
+              <a href="https://twitter.com/DBlackerMan" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
+                <i class="fab fa-twitter text-lg" title="twitter"></i>
+                <i class="absolute top-0 left-0 fab fa-twitter text-lg group-hover:animate-ping" title="twitter"></i>
               </a>
             </div>
             <!-- end of social links -->
