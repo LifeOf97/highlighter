@@ -48,7 +48,7 @@
             leave-from-class=""
             leave-active-class="transition transform duration-300">
             <div v-if="!codeEditor">
-              <text-editor
+              <base-text-editor
                 autofocus
                 :rows="10"
                 ref="texteditor"
@@ -94,7 +94,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import BaseTextSelectMenu from '../components/BaseTextSelectMenu.vue';
-import TextEditor from '../components/TextEditor.vue';
+import BaseTextEditor from '../components/BaseTextEditor.vue';
 
 export default {
   name: 'CodeEditor',
@@ -108,7 +108,7 @@ export default {
       codeEditor: true,
     };
   },
-  components: { BaseTextSelectMenu, TextEditor },
+  components: { BaseTextSelectMenu, BaseTextEditor },
   created() {
     this.fetchLanguages();
     this.fetchFormats();
@@ -128,28 +128,33 @@ export default {
       this.codeEditor = false;
     },
     setLanguage(value) {
-      // method to update the selected language option
+      // this method is called when an option-selected event emitted from
+      // the BaseTextSelectMenu component is captured.ion
       this.language = value;
     },
     setFormat(value) {
-      // method to update the selected format option
+      // this method is called when an option-selected event emitted from
+      // the BaseTextSelectMenu component is captured.n
       this.format = value;
     },
     setStyle(value) {
-      // method to update the selected style option
+      // this method is called when an option-selected event emitted from
+      // the BaseTextSelectMenu component is captured.
       this.style = value;
     },
     highlight() {
       // method to call the store action passing in the required payload
       // to highlight the code snippet.
       if (this.code.length > 0) {
-        // if statement returns true set the error.state to false
-        // and error.message to an empty string.
+        // that is, if the code editor has some text in it then set the
+        // error.state to false and error.message to an empty string.
         this.error.state = false;
         this.error.message = '';
-        // then call the action used to highlight the code.
+        // then call the store action used to highlight the code snippet.
         this.highlightCode({
+          // set the loading status to true.
           loading: { status: true },
+          // pass highlight the data needed fo highlighting.
           highlight: {
             code: this.code.toLowerCase(),
             style: this.style.toLowerCase(),
@@ -157,7 +162,7 @@ export default {
             language: this.language.toLowerCase(),
           },
         });
-        // also emit an event to prompt the change of component.
+        // then emit an event to change the rendered component to the codeResult component.
         this.$emit('update:component', 'CodeResult');
       } else {
         // else if this statement returns false then set the error.state
