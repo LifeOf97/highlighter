@@ -40,7 +40,7 @@ class HighlighterSerializer(serializers.Serializer):
     getFormat = serializers.ChoiceField(choices=FORMATTERS, default='html')
     lineNos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
     styling = serializers.ChoiceField(choices=STYLINGS, required=False, default='inline')
-    divClass = serializers.CharField(required=False, default='highlighter')
+    divClass = serializers.CharField(required=False, default='justhighlight')
     hlLines = serializers.ListField(
         required=False,
         default=[],
