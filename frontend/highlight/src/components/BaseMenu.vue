@@ -13,11 +13,8 @@
               type="button"
               @click="optionSelected(item)"
               class="inline-flex focus:outline-none justify-between items-center w-full h-full px-2 py-1 text-left">
-                <span
-                  class="text-gray-900 text-base font-medium truncate">{{item}}</span>
-                <i
-                  :class="[selected === item ? 'text-black' : 'text-transparent']"
-                  class="fas fa-check text-md"></i>
+                <span class="text-gray-900 text-base font-medium truncate">{{item}}</span>
+                <i :class="[selected === item ? 'text-black' : 'text-transparent']" class="fas fa-check text-md"></i>
             </button>
         </li>
       </ul>
@@ -41,12 +38,14 @@ export default {
   },
   computed: {
     filterOptions() {
-      // return this.options.filter((item) => item.toLowerCase());
+      // return filtered options containning the supplied string
       return this.options.filter((item) => item.toLowerCase().indexOf(this.filter.toLowerCase()) !== -1);
     },
   },
   methods: {
     optionSelected(item) {
+      // method called when an option is clicked. This updates the selected data object
+      // and also emits an event along side the option selected.
       this.selected = item;
       this.$emit('option-selected', item);
     },

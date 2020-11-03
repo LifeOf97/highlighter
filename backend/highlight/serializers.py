@@ -38,7 +38,7 @@ class HighlighterSerializer(serializers.Serializer):
     language = serializers.ChoiceField(choices=LANGUAGES, default='python')
     style = serializers.ChoiceField(choices=STYLES, default='emacs')
     getFormat = serializers.ChoiceField(choices=FORMATTERS, default='html')
-    lineNos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='inline')
+    lineNos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
     styling = serializers.ChoiceField(choices=STYLINGS, required=False, default='inline')
     divClass = serializers.CharField(required=False, default='highlighter')
     hlLines = serializers.ListField(

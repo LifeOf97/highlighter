@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div id="home" class="w-full h-full bg-white overflow-x-hidden">
+  <div id="home" class="mt-16 w-full h-full bg-white overflow-x-hidden py-4">
     <!-- top nav and hero div -->
     <header id="header" class="w-full bg-teal-300 shadow-sm">
       <!-- start of hero div -->
@@ -51,6 +51,7 @@
       </div>
     </aside>
     <!-- end of info div -->
+    <base-footer />
   </div>
 </template>
 
@@ -58,33 +59,18 @@
 import gsap from 'gsap';
 import CodeEditor from './CodeEditor.vue';
 import CodeResult from './CodeResult.vue';
+import BaseFooter from '../components/BaseFooter.vue';
 
 export default {
   name: 'Home',
-  components: { CodeEditor, CodeResult },
+  components: { CodeEditor, CodeResult, BaseFooter },
   data() {
     return {
       current: 'CodeEditor',
     };
   },
   mounted() {
-    // get all refs needed for gsap animation, using object destructuring.
-    const {
-      hero, hero1, hero2, hero3,
-      info, info1, info2, editor,
-    } = this.$refs;
-    // gsap timeline: using gsap timeline we organize the animation accordingly
-    // from the bigtext to the info's and then the editor.
-    const tl = gsap.timeline();
-    tl.from([hero, hero1, hero2, hero3], {
-      duration: 1.5, y: -50, opacity: 0, scale: 0.4, delay: 0.7, ease: 'elastic', stagger: 0.6,
-    })
-      .from(editor, {
-        duration: 1, opacity: 0, y: 100,
-      })
-      .from([info, info1, info2], {
-        duration: 0.5, y: 40, skewX: 30, opacity: 0, stagger: 0.3, delay: 1,
-      });
+    this.gsapAnim1();
   },
   computed: {
     active() {
@@ -95,6 +81,26 @@ export default {
     updateComponent(value) {
       // method to update the editor component
       this.current = value;
+    },
+    gsapAnim1() {
+      // this method is to create a little gsap animation on the page.
+      // get all refs needed for gsap animation, using object destructuring.
+      const {
+        hero, hero1, hero2, hero3,
+        info, info1, info2, editor,
+      } = this.$refs;
+      // gsap timeline: using gsap timeline we organize the animation accordingly
+      // from the bigtext to the editor and then the info's.
+      const tl = gsap.timeline();
+      tl.from([hero, hero1, hero2, hero3], {
+        duration: 1.5, y: -50, opacity: 0, scale: 0.4, delay: 0.7, ease: 'elastic', stagger: 0.6,
+      })
+        .from(editor, {
+          duration: 1, opacity: 0, y: 100,
+        })
+        .from([info, info1, info2], {
+          duration: 0.5, y: 40, skewX: 5, opacity: 0, stagger: 0.3, delay: 1,
+        });
     },
   },
 };

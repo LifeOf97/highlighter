@@ -65,6 +65,13 @@ class Highlighter(APIView):
             # should the style selected also affect the overall code background?
             # defaults to False.
             nobackground: bool = serializer.data.get('noBackground')
+
+            # prefix the css classes used when 'noclasses' is set to False
+            classprefix: str = serializer.data.get('classPrefix')
+
+            # custom inline css styles to innsert into the div container
+            # holding the main code snippet.
+            cssstyles: str = 'padding: 20px;'
             
             # full is used to define if the user requires a full html
             # document, defaults to False
@@ -77,8 +84,6 @@ class Highlighter(APIView):
             # css style result and a body result, default to False
             # separate: bool = serializer.data.get('separate')
             
-            # prefix the css classes used when 'noclasses' is set to False
-            classprefix: str = serializer.data.get('classPrefix')
      
 
             # which formatter was selected by the user?
@@ -87,34 +92,37 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
             elif getFormat.lower() in ['html', 'htm']:
                 if noclasses:
+                    # this means the user requested for an inline styling
                     formatter = HtmlFormatter(
                         style=style, linenos=linenos, noclasses=noclasses,
                         wrapcode=True, nobackground=nobackground, cssclass=cssclass,
-                        hl_lines=hl_lines, lineseparator='<br>',
+                        hl_lines=hl_lines, cssstyles=cssstyles, lineseparator='<br>',
                     )
                     highlighted = highlight(code, lexer, formatter)
                     data = {
                         'status': 'success',
-                        'result': {'data': highlighted}
+                        'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                     }
 
                 else:
+                    # this means the user requested for class styling
                     formatter = HtmlFormatter(
                         style=style, linenos=linenos, noclasses=noclasses,
                         wrapcode=True, nobackground=nobackground, cssclass=cssclass,
-                        hl_lines=hl_lines, lineseparator='<br>', classprefix=classprefix,
+                        hl_lines=hl_lines, cssstyles=cssstyles, lineseparator='<br>',
+                        classprefix=classprefix,
                     )
                     highlighted = highlight(code, lexer, formatter)
                     styles = formatter.get_style_defs(F".{cssclass}")
                     data = {
                         'status': 'success',
-                        'result': {'data': highlighted, 'styles': styles}
+                        'result': {'data': highlighted, 'styles': styles, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                     }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -123,7 +131,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -132,7 +140,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -147,7 +155,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -156,7 +164,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
             
@@ -166,7 +174,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -175,12 +183,12 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted}
+                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-                # if all is not well(error) run this code block statement.
             else:
+                # if all is not well(error) run this code block statement.
                 data = {
                     'status': 'failed',
                     'result': {'data' : None}
