@@ -12,7 +12,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
     * HTML [Hypertext Markup Language](https://www.w3schools.com/html/html_intro.asp).
     * RTF [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format).
-    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG). (**experimental**)
+    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG). (_experimental_)
     * Terminal.
     * Terminal256.
     * Text.
@@ -104,4 +104,4 @@ The succefull response of a valid request contains the following.
 
 ## Credits
 
-**Highlighter** depends fully on **Pygments** which syntax highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/) for more insight.
+**Highlighter** depends fully on **Pygments** which is a syntax highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments documentation](https://pygments.org/) for more insight.
