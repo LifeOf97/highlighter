@@ -12,7 +12,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
     * HTML [Hypertext Markup Language](https://www.w3schools.com/html/html_intro.asp).
     * RTF [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format).
-    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG).
+    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG). (__experimental__)
     * Terminal.
     * Terminal256.
     * Text.
@@ -37,40 +37,43 @@ Here are the config options for highlighting code snippets.
     // Code snippet to be highlighted. Required.
     code: '',
 
-    // Programming language of the code snippet to be highlighted. Required. 
+    // Programming language (__sourcecode__) of the code snippet to be highlighted. Required. 
     language: 'python', // default
 
     // Syntax highlighting style. Optional.
     // checkout the available styles at the features section of this readme.
     style: 'default', // default
 
-    // In what format would you like to retrieve your code snippet.
+    // In what format would you like to retrieve your code snippet,
+    // checkout the available formats at the features section of this readme.
     getFormat: 'html', // default
 
     // linenos is used to request if the result should have line numbers
-    // or not, this can be one of ['inline', 'table', false], defaults to
+    // or not, this can be one of ['inline', 'table', 'none'], defaults to
     // false, no line numbers.
     // Optional.
-    lineNos: false, // default
+    lineNos: 'none', // default
     
-    // noclasses is used to define if the user requires inline css
-    // styling or classes, this can be one of ['inline', 'class']
+    // FORMAT: HTML => what type of html styling would you prefer? inline styling or
+    // classes, this can be one of ['inline', 'class']
     styling: 'inline', // default
     
-    // class name giving to the div tag wrapping the whole code block
-    // defaults to highlighter,
+    // FORMAT: HTML => class name giving to the div tag wrapping the whole code block
+    // defaults to justhighlight,
     // NOTE: if linenos is set to table this will append a 'table' making 
-    // it 'highlightertable'.
-    divClass: 'highlighter', // default
+    // it 'justhighlighttable'.
+    divClass: 'justhighlight', // default
 
     // Specify a list of line numbers to be highlighted in your code snippet
     // this should be an array of numbers. Defaults to an empty array.
-    hlLines: [], 
+    hlLines: [], // default
     
-    // The noBackground option is used to request the the code background should be styles by the selected syntax style of not. this should either be true/false 
+    // The noBackground option is used to request that the style option selected
+    // should not affect the code background. this should either be true/false 
     noBackground: false, // default
     
-    // prefix the css classes used when 'noclasses' is set 'class'
+    // FORMAT: HTML => classPrefix is used to prefix the css classes used
+    // when 'styling' is set 'class'
     classPrefix: '' // default is an empty string
 }
 ```
@@ -85,9 +88,10 @@ The succefull response of a valid request contains the following.
     status: 'success',
     
     // The result object containing the highlighted code data
-    // and style
     result: {
-        data: '',
+        data: '', // the highlighted code snippet.
+        sourcecode: '', // the highlighted code return format. 
+        formatting: '', // the programming language highlighted.
         styles: '', // only available when styling is set to class.
     }
 }
