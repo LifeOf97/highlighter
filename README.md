@@ -12,7 +12,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     * BBCode [Bulletin Board Code](https://en.wikipedia.org/wiki/BBCode).
     * HTML [Hypertext Markup Language](https://www.w3schools.com/html/html_intro.asp).
     * RTF [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format).
-    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG). (__experimental__)
+    * SVG [Scalable Vector Graphics](https://developer.mozilla.org/en-US/docs/Web/SVG). (**experimental**)
     * Terminal.
     * Terminal256.
     * Text.
@@ -37,10 +37,10 @@ Here are the config options for highlighting code snippets.
     // Code snippet to be highlighted. Required.
     code: '',
 
-    // Programming language (__sourcecode__) of the code snippet to be highlighted. Required. 
+    // Programming language (sourcecode) of the code snippet to be highlighted. Required. 
     language: 'python', // default
 
-    // Syntax highlighting style. Optional.
+    // Syntax highlighting style.
     // checkout the available styles at the features section of this readme.
     style: 'default', // default
 
@@ -50,7 +50,7 @@ Here are the config options for highlighting code snippets.
 
     // linenos is used to request if the result should have line numbers
     // or not, this can be one of ['inline', 'table', 'none'], defaults to
-    // false, no line numbers.
+    // 'none', no line numbers.
     // Optional.
     lineNos: 'none', // default
     
@@ -59,17 +59,16 @@ Here are the config options for highlighting code snippets.
     styling: 'inline', // default
     
     // FORMAT: HTML => class name giving to the div tag wrapping the whole code block
-    // defaults to justhighlight,
-    // NOTE: if linenos is set to table this will append a 'table' making 
-    // it 'justhighlighttable'.
+    // defaults to 'justhighlight', NOTE: if linenos is set to table this
+    // will append a 'table' making it 'justhighlighttable'.
     divClass: 'justhighlight', // default
 
-    // Specify a list of line numbers to be highlighted in your code snippet
+    // hlLines is used to specify a list of line numbers to be highlighted in your code snippet
     // this should be an array of numbers. Defaults to an empty array.
     hlLines: [], // default
     
-    // The noBackground option is used to request that the style option selected
-    // should not affect the code background. this should either be true/false 
+    // The noBackground option is used to request that the style option selected should not
+    // affect the code background color. this should either be true/false 
     noBackground: false, // default
     
     // FORMAT: HTML => classPrefix is used to prefix the css classes used
