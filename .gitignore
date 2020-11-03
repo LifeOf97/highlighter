@@ -17,7 +17,7 @@ backend/db.sqlite3-journal
 #JAVASCRIPT (node)
 # Dependency directories
 frontend/highlight/node_modules/
-frontend/highlight/node_modules/gsap
+frontend/highlight/node_modules/*
 
 # vscode stuff
 .vscode/
