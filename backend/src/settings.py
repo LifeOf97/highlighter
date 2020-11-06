@@ -1,19 +1,26 @@
 from corsheaders.defaults import default_headers, default_methods
 from pathlib import Path
-import os
+import os, json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # or like this BASE_DIR.joinpath('path')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load the file where important values are kept, such as the secret key
+# then assign it to the variable called 'config' which becomes
+# a dictionary.
+secret_file = Path('secret.json').read_text()
+config = json.loads(secret_file)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7qq)k1o^#=_=cfu=(hckfgu66&4%l#xn1xxcm!k==7e16@t&5l'
+SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', default=True)
+# DEBUG = os.environ.get('DEBUG', default=True)
+DEBUG = config.get('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.208', '192.168.1.101']
 

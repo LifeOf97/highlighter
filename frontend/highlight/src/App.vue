@@ -58,7 +58,7 @@
               <!-- end of router links to docs and back to home page -->
               <!-- start of social links -->
               <div class="flex-initial flex place-items-center space-x-3 ml-3">
-                <a href="https://github.com/KMA-USS" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
+                <a href="https://github.com/d-kma" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
                   <i class="fab fa-github text-lg" title="github"></i>
                   <i class="absolute top-0 left-0 fab fa-github text-lg group-hover:animate-ping" title="github"></i>
                 </a>
@@ -77,7 +77,20 @@
     <!-- end of top nav -->
     <!-- start of router view -->
     <div class="w-full" @click="menu = false">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition
+          name="slideup"
+          enter-from-class="opacity-0"
+          enter-to-class=""
+          enter-active-class="transition transform duration-500 ease-in"
+          leave-from-class="opacity-0"
+          leave-to-class=""
+          leave-active-class="transition transform duration-500 ease-in">
+          <keep-alive>
+            <component :is="Component"></component>
+          </keep-alive>
+        </transition>
+      </router-view>
     </div>
     <!-- end of router view -->
   </div>

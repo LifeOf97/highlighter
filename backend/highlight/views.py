@@ -17,6 +17,7 @@ from pygments.styles import get_style_by_name, get_all_styles
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
+from .others import PrettyJSONRenderer
 from rest_framework import status
 from pygments import highlight
 
@@ -31,6 +32,7 @@ class Highlighter(APIView):
     only allows post request along side the data(code text) to highlight.
     """
     permission_classes = [AllowAny]
+    renderer_classes = [PrettyJSONRenderer]
 
     def post(self, request, format=None):
         serializer = HighlighterSerializer(data=request.data, context={'request': request})
@@ -71,7 +73,7 @@ class Highlighter(APIView):
 
             # custom inline css styles to innsert into the div container
             # holding the main code snippet.
-            cssstyles: str = 'padding: 20px;'
+            cssstyles: str = 'padding: 20px; width: 100rem;'
             
             # full is used to define if the user requires a full html
             # document, defaults to False
@@ -210,6 +212,7 @@ class Options(APIView):
     languages = sorted([lexer[0].lower() for lexer in get_all_lexers()])
     styles = sorted([style for style in get_all_styles()])
     formats = sorted(['bbcode', 'html', 'irc', 'rtf', 'svg', 'text', 'terminal', 'terminal256'])
+    renderer_classes = [PrettyJSONRenderer]
 
     def get(self, request, option=None, format=None):
         if option in ['language', 'languages']:
@@ -232,6 +235,8 @@ class APIRoot(APIView):
     """
     Class based api root view, returns the urls available for access.
     """
+    renderer_classes = [PrettyJSONRenderer]
+    
     def get(self, request, format=None):
         data = {
             "Highlighter": reverse("highlighter:highlight", request=request, format=format),

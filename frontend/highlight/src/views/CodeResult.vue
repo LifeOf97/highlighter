@@ -5,7 +5,7 @@
         <i class="fas fa-spinner text-4xl text-white animate-spin"></i>
       </div>
       <div v-else class="overflow-y-auto overscroll-x-auto h-68">
-        <div v-html="getHighlighted" style="width: 999px;"></div>
+        <div v-html="getHighlighted"></div>
       </div>
       <div class="w-full flex justify-start items-center p-2 bg-gray-800">
         <button
