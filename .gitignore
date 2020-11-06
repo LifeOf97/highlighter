@@ -6,6 +6,7 @@ backend/venv/
 backend/status.txt
 backend/pygment.txt
 backend/formatters.txt
+backend/secret.json
 
 # Django stuff:
 backend/*.log
