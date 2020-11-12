@@ -101,6 +101,7 @@ export default createStore({
         style: context.getters.getHighlightDetails.style,
         getFormat: context.getters.getHighlightDetails.format,
         language: context.getters.getHighlightDetails.language,
+        noBackground: true,
       };
       // then make a post request to the highlighter api backend,
       // passing the data as payload to be highlighted.

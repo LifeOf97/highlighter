@@ -1,7 +1,6 @@
 <template>
   <div v-bind="$attrs">
-    <slot v-if="loading" name="sourcecode">
-    </slot>
+    <slot v-if="loading" name="sourcecode"></slot>
     <div v-else v-html="highlighted"></div>
     </div>
 </template>
@@ -21,7 +20,7 @@ export default {
       highlighted: '',
       highlight: {
         code: this.$slots.sourcecode()[0].children.trim(),
-        style: 'paraiso-dark',
+        style: 'monokai',
         format: 'html',
       },
     };
@@ -41,6 +40,7 @@ export default {
         style: this.highlight.style,
         getFormat: this.highlight.format,
         language: this.language,
+        noBackground: true,
       };
       // then make a post request to the highlighter api endpoint along side the
       // data to be highlighted.

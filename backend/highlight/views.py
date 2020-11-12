@@ -103,7 +103,7 @@ class Highlighter(APIView):
                     # this means the user requested for an inline styling
                     formatter = HtmlFormatter(
                         style=style, linenos=linenos, noclasses=noclasses,
-                        wrapcode=True, nobackground=nobackground, cssclass=cssclass,
+                        wrapcode=False, nobackground=nobackground, cssclass=cssclass,
                         hl_lines=hl_lines, cssstyles=cssstyles, lineseparator='<br>',
                     )
                     highlighted = highlight(code, lexer, formatter)
@@ -116,7 +116,7 @@ class Highlighter(APIView):
                     # this means the user requested for class styling
                     formatter = HtmlFormatter(
                         style=style, linenos=linenos, noclasses=noclasses,
-                        wrapcode=True, nobackground=nobackground, cssclass=cssclass,
+                        wrapcode=False, nobackground=nobackground, cssclass=cssclass,
                         hl_lines=hl_lines, cssstyles=cssstyles, lineseparator='<br>',
                         classprefix=classprefix,
                     )
