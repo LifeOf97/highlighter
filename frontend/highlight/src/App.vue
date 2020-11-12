@@ -35,7 +35,7 @@
             <button
               type="button"
               @click="menu = false"
-              class="absolute top-0 right-0 mr-6 mt-2  focus:outline-none group md:hidden">
+              class="absolute top-0 right-0 mr-3 mt-1 focus:outline-none group md:hidden">
               <i class="fas fa-times text-transparent text-2xl font-bold bg-clip-text bg-gradient-to-br from-blue-600 via-pink-500 to-red-500"></i>
             </button>
             <!-- end of close nav button -->
@@ -58,7 +58,7 @@
               <!-- end of router links to docs and back to home page -->
               <!-- start of social links -->
               <div class="flex-initial flex place-items-center space-x-3 ml-3">
-                <a href="https://github.com/d-kma" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
+                <a href="https://github.com/d-kma/highlighter" target="_blank" class="relative text-gray-600 hover:text-pink-500 group">
                   <i class="fab fa-github text-lg" title="github"></i>
                   <i class="absolute top-0 left-0 fab fa-github text-lg group-hover:animate-ping" title="github"></i>
                 </a>

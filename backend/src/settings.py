@@ -6,8 +6,8 @@ import os, json
 # or like this BASE_DIR.joinpath('path')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load the file where important values are kept, such as the secret key
-# then assign it to the variable called 'config' which becomes
+# Load the file where important values are kept, such as the secret key.
+# Then assign it to the variable called 'config' which becomes
 # a dictionary.
 secret_file = Path('secret.json').read_text()
 config = json.loads(secret_file)

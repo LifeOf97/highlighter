@@ -96,7 +96,7 @@ export default {
         duration: 1.5, y: -50, opacity: 0, scale: 0.4, delay: 0.7, ease: 'elastic', stagger: 0.6,
       })
         .from(editor, {
-          duration: 1, opacity: 0, y: 100,
+          duration: 0.7, opacity: 0, y: 100,
         })
         .from([info, info1, info2], {
           duration: 0.5, y: 40, skewX: 5, opacity: 0, stagger: 0.3, delay: 1,
