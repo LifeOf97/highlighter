@@ -8,8 +8,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load the file where important values are kept, such as the secret key.
 # Then assign it to the variable called 'config' which becomes
-# a dictionary.
+# a dictionary object.
+# using the 'Path' lib to read the json file as text
 secret_file = Path('secret.json').read_text()
+# then convert the text to json format usig the json lib.
+# and assign it to the 'config' variable.
 config = json.loads(secret_file)
 
 # Quick-start development settings - unsuitable for production
@@ -128,20 +131,19 @@ STATIC_ROOT = BASE_DIR.joinpath('static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media')
 
-# DJANGO REST FRAMEWORK SETTINGS
+# DJANGO REST FRAMEWORK SETTINGS.
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
 }
 
-# DJANGO CORS HEADERS SETTINGS
+# DJANGO CORS HEADERS SETTINGS.
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:5500',
     'http://127.0.0.1:5000',
-    'http://127.0.0.1:8080',
     'http://127.0.0.1:8080',
     'http://192.168.43.208:5000',
     'http://192.168.43.208:5500',

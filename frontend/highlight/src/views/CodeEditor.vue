@@ -1,14 +1,13 @@
 <template>
 <!-- eslint-disable max-len -->
     <div class="w-full h-full bg-gray-800">
-      <form action="" method="post" @submit.prevent class="w-full flex flex-col">
+      <form method="post" @submit.prevent class="w-full flex flex-col">
         <!-- start of code editor options -->
         <div id="editor-options" class="flex-1 flex flex-wrap px-3 py-2 relative bg-gray-800">
           <base-text-select-menu
             :label="'Language:'"
             :placeholder="'---'"
             :options="getLanguages"
-            :position="'left-0'"
             @option-selected="setLanguage"
             class="flex-1" />
           <base-text-select-menu
@@ -29,12 +28,9 @@
         <div class="flex-1 h-66">
           <!-- start of button to open code editor -->
           <div v-if="codeEditor" class="h-66 border-t border-gray-600 flex justify-center items-center bg-gray-800 bg-opacity-50 group">
-            <button
-              type="button"
-              @click="openEditor()"
+            <button type="button" @click="openEditor()"
               class="px-2 py-1 rounded-md text-lg text-white font-medium bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500
-              group-hover:animate-bounce focus:outline-none">
-                Code Editor
+              group-hover:animate-bounce focus:outline-none">Code Editor
             </button>
           </div>
           <!-- end of button to open code editor -->
@@ -53,7 +49,7 @@
                 :rows="10"
                 ref="texteditor"
                 v-model="code"
-                placeholder="Enter code here..."
+                placeholder="Enter your code here..."
                 class="w-full h-auto resize-none outline-none text-white bg-gray-700 p-4 placeholder-gray-400" />
             </div>
           </transition>
@@ -62,6 +58,7 @@
         </div>
         <!-- start of code editor submit button div -->
         <div v-if="!codeEditor" class="p-2 flex justify-between">
+          <!-- start of div to handle errors -->
           <div class="flex-1">
             <transition
               name="error"
@@ -71,12 +68,14 @@
               leave-from-class=""
               leave-to-class="opacity-0 translate-y-5"
               leave-active-class="transition transform duration-100">
-              <div v-if="error.state" class="">
+              <div v-if="error.state">
                 <i class="fas fa-exclamation-circle text-md text-gray-300 mr-1"></i>
-                <span class="text-sm font-semibold text-red-500">{{error.message}}</span>
+                <span class="text-xs sm:text-sm font-semibold text-red-500">{{error.message}}</span>
               </div>
             </transition>
           </div>
+          <!-- end of div to handle errors -->
+          <!-- start of code editor submit/highlight button -->
           <button
             type="submit"
             @click="highlight()"
@@ -85,6 +84,7 @@
             <span class="font-semibold text-base text-white">Highlight</span>
             <i class="fas fa-long-arrow-alt-right text-lg text-black"></i>
           </button>
+          <!-- end of code editor submit/highlight button -->
         </div>
         <!-- end of code editor submit button -->
       </form>
@@ -104,8 +104,8 @@ export default {
       style: '',
       format: '',
       language: '',
-      error: { state: false, message: '' },
       codeEditor: true,
+      error: { state: false, message: '' },
     };
   },
   components: { BaseTextSelectMenu, BaseTextEditor },
@@ -129,7 +129,7 @@ export default {
     },
     setLanguage(value) {
       // this method is called when an option-selected event emitted from
-      // the BaseTextSelectMenu component is captured.ion
+      // the BaseTextSelectMenu component is captured on the
       this.language = value;
     },
     setFormat(value) {

@@ -7,9 +7,10 @@ from pygments.styles import get_all_styles
 LEXERS = [lexer for lexer in get_all_lexers()]
 # organize all lexers in tuples with two values ('lexer', 'LEXER')
 LANGUAGES = sorted([(lexer[0].lower(), lexer[1][0]) for lexer in LEXERS])
-# get and organize all styles in tuples
+# get and organize all styles available for highlighting the code snippet.
 STYLES = sorted([(style, style) for style in get_all_styles()])
 # available formatters as @ version 0.1.1 (not released).
+# hardcoded.
 FORMATTERS = sorted((
     ('bbcode', 'bbcode'),
     ('html', 'html'),
@@ -20,14 +21,17 @@ FORMATTERS = sorted((
     ('terminal', 'terminal'),
     ('terminal256', 'terminal256'),
 ))
-# what kind of line number is required?
+# a tuple of the line number formats available.
 LINENUMBER = (
     ('none', 'none'),
     ('table', 'table'),
     ('inline', 'inline'),
 )
-# css inline styling or class names?
-STYLINGS = (('inline', 'inline'), ('class', 'class'))
+# HTML: the css styling formats available. inline or class.
+CSS = (
+    ('inline', 'inline'),
+    ('class', 'class')
+)
 
 
 class HighlighterSerializer(serializers.Serializer):
@@ -39,7 +43,7 @@ class HighlighterSerializer(serializers.Serializer):
     style = serializers.ChoiceField(choices=STYLES, default='emacs')
     getFormat = serializers.ChoiceField(choices=FORMATTERS, default='html')
     lineNos = serializers.ChoiceField(choices=LINENUMBER, required=False, default='none')
-    styling = serializers.ChoiceField(choices=STYLINGS, required=False, default='inline')
+    css = serializers.ChoiceField(choices=CSS, required=False, default='inline')
     divClass = serializers.CharField(required=False, default='justhighlight')
     hlLines = serializers.ListField(
         required=False,
