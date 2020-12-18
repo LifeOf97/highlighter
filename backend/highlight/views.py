@@ -45,18 +45,20 @@ class Highlighter(APIView):
             getFormat: str = serializer.data.get('getFormat')
 
             #---more options, for formatters that require this settings.
-            # linenos is used to request if the result should have line numbers
-            # or not, this can be one of ['inline', 'table', False], defaults to
-            # False, no line numbers
+
+            # linenos is used to determine if the result should have line numbers
+            # activated or not, this can be one of ['inline', 'table', 'none'],
+            # NOTE: 'none' is converted to False over here, defuaul is also
+            # False, that means no line numbers.
             linenos = False if serializer.data.get('lineNos') == 'none' else serializer.data.get('lineNos')
             
-            # noclasses is used to define if the user requires inline css
-            # styling or classes, if set to True inline styling is used and
-            # the 'full, separate and other optional arguments will not take
-            # effect, defaults to True
-            noclasses = True if serializer.data.get('styling') == 'inline' else False
+            # HTML: noclasses is used to determine if the user requires inline css
+            # styling or css classes, if the css serializer data is 'inline', it
+            # then means True for inline css styling else if the css data is 'class'
+            # it then means False for 'inline' and True for 'class' styling.
+            noclasses = True if serializer.data.get('css') == 'inline' else False
             
-            # class name to wrap the whole code block, defaults to highlighter,
+            # HTML: class name to wrap the whole code block, defaults to highlighter,
             # NOTE: if linenos is set to table the cssclass name will append a 
             # 'table' making it 'highlightertable'.
             cssclass: str = serializer.data.get('divClass')
@@ -68,11 +70,13 @@ class Highlighter(APIView):
             # defaults to False.
             nobackground: bool = serializer.data.get('noBackground')
 
-            # prefix the css classes used when 'noclasses' is set to False
+            # HTML: prefix the css classes used when 'noclasses' is set to 'class'
+            # which means False for 'inline' styling and True for 'class' styling
             classprefix: str = serializer.data.get('classPrefix')
 
-            # custom inline css styles to innsert into the div container
-            # holding the main code snippet.
+            # custom inline css styles to insert into the div container
+            # holding the main code snippet. NOTE: this is not gotten
+            # from the serializer data, it is hard-coded.
             cssstyles: str = 'padding: 20px; width: 100rem;'
             
             # full is used to define if the user requires a full html
@@ -86,7 +90,6 @@ class Highlighter(APIView):
             # css style result and a body result, default to False
             # separate: bool = serializer.data.get('separate')
             
-     
 
             # which formatter was selected by the user?
             if getFormat.lower() in ['bbcode', 'bb']:
@@ -94,7 +97,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -109,7 +112,7 @@ class Highlighter(APIView):
                     highlighted = highlight(code, lexer, formatter)
                     data = {
                         'status': 'success',
-                        'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                        'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                     }
 
                 else:
@@ -124,7 +127,7 @@ class Highlighter(APIView):
                     styles = formatter.get_style_defs(F".{cssclass}")
                     data = {
                         'status': 'success',
-                        'result': {'data': highlighted, 'styles': styles, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                        'result': {'highlighted': highlighted, 'styles': styles, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                     }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -133,7 +136,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -142,7 +145,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -157,7 +160,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -166,7 +169,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
             
@@ -176,7 +179,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -185,7 +188,7 @@ class Highlighter(APIView):
                 highlighted = highlight(code, lexer, formatter)
                 data = {
                     'status': 'success',
-                    'result': {'data': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
+                    'result': {'highlighted': highlighted, 'sourcecode': getFormat.lower(), 'formatting': lexer.name}
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
@@ -204,7 +207,7 @@ class Highlighter(APIView):
 
 class Options(APIView):
     """
-    Class based API view to get all highlighter opotions.
+    Class based API view to get the highlighter options values.
 
     get:
     only allows get method.
@@ -215,15 +218,20 @@ class Options(APIView):
     renderer_classes = [PrettyJSONRenderer]
 
     def get(self, request, option=None, format=None):
-        if option in ['language', 'languages']:
+        # We made use of 'str' url kwargs so as to capture the type
+        # of option the user is requesting, and then return the
+        # appropriate result these can be one of
+        # ['languages', 'styles', 'formats'].
+
+        if option == "languages":
             data = {"result": self.languages}
             return Response(data, status=status.HTTP_200_OK )
         
-        elif option in ['format', 'formats']:
+        elif option == "formats":
             data = {"result": self.formats}
             return Response(data, status=status.HTTP_200_OK )
         
-        elif option in ['style', 'styles']:
+        elif option == "styles":
             data = {"result": self.styles}
             return Response(data, status=status.HTTP_200_OK )
         
@@ -233,7 +241,10 @@ class Options(APIView):
 
 class APIRoot(APIView):
     """
-    Class based api root view, returns the urls available for access.
+    Class based api root view, returns the urls that can be queried.
+
+    get:
+    only allows get method.
     """
     renderer_classes = [PrettyJSONRenderer]
     
@@ -241,9 +252,9 @@ class APIRoot(APIView):
         data = {
             "Highlighter": reverse("highlighter:highlight", request=request, format=format),
             "Options": {
-                "Languages": reverse("highlighter:highlight-options", request=request, format=format, args=['languages']),
-                "Formats": reverse("highlighter:highlight-options", request=request, format=format, args=['formats']),
                 "Styles": reverse("highlighter:highlight-options", request=request, format=format, args=['styles']),
+                "Formats": reverse("highlighter:highlight-options", request=request, format=format, args=['formats']),
+                "Languages": reverse("highlighter:highlight-options", request=request, format=format, args=['languages']),
             }
         }
         return Response(data, status=status.HTTP_200_OK)
