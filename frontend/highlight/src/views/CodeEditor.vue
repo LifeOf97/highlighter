@@ -156,10 +156,10 @@ export default {
           loading: { status: true },
           // pass highlight the data needed fo highlighting.
           highlight: {
-            code: this.code.toLowerCase(),
-            style: this.style.toLowerCase(),
-            format: this.format.toLowerCase(),
-            language: this.language.toLowerCase(),
+            code: this.code,
+            style: this.style,
+            format: this.format,
+            language: this.language,
           },
         });
         // then emit an event to change the rendered component to the codeResult component.
