@@ -9,7 +9,7 @@
         v-model="selected"
         @toggle-menu-btn="toggleMenuBtn"
         @focusin="menu = true"/>
-      <!-- base menu, activated with dropdown button -->
+      <!-- base menu, activated with dropdown button or when input is focused -->
       <transition
         name="slide-menu"
         enter-from-class="-translate-y-3 opacity-0"
@@ -20,7 +20,6 @@
         leave-active-class="transition transform duration-200">
         <base-menu
           v-if="menu"
-          :position="position"
           :options="options"
           :filter="selected"
           @option-selected="menuOptionSelected" />
@@ -36,9 +35,8 @@ export default {
   name: 'BaseTextSelectMenu',
   props: {
     options: { type: Array, required: true },
-    position: { type: String, required: false },
-    label: { type: String, required: false, default: 'label' },
     placeholder: { type: String, required: true },
+    label: { type: String, required: false, default: 'label' },
   },
   emits: ['option-selected'],
   components: { BaseInputDrop, BaseMenu },
@@ -53,15 +51,15 @@ export default {
       // this method is called when an 'option-selected' event emitted from the
       // BaseMenu component is captured.
       this.selected = item;
-      // it also emits an event along side the selected option.
+      // it also emits an event passing in the selected option.
       this.$emit('option-selected', item);
       // when a menu option is selected, close the menu.
       this.menu = false;
     },
     toggleMenuBtn(value) {
       // this method is called when the 'toggle-menu-btn' event is captured from
-      // the BaseInputDrop component this set the menu data object o true/false
-      // that is show/hide.
+      // the BaseInputDrop component. This sets the menu data object to true/false
+      // which toggles the show/hide state.
       this.menu = value;
     },
   },

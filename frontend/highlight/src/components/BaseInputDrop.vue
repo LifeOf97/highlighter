@@ -20,7 +20,7 @@
           aria-required="true"
           class="bg-gray-800 text-sm text-gray-200 w-32 font-normal focus:outline-none placeholder-gray-400" />
         <button @click="isActive = !isActive, toggleMenuBtn(isActive)" class="mb-1 absolute w-6 right-0 focus:outline-none">
-          <i :class="[isActive ? 'text-gray-200' : 'text-gray-600']" class="fas fa-sort-down text-xl leading-4 hover:text-gray-300"></i>
+          <i :class="[isActive ? 'text-gray-200' : 'text-gray-600']" class="fas fa-sort-down text-xl leading-4 hover:text-gray-200"></i>
         </button>
       </div>
     </div>
@@ -31,9 +31,9 @@ export default {
   name: 'BaseInputDrop',
   inheritAttrs: false,
   props: {
-    modelValue: String,
+    modelValue: { type: String, required: false },
     modelModifiers: { default: () => ({}) },
-    label: { type: String, required: false },
+    label: { type: String, required: false, default: 'Label' },
     menuValue: { type: Boolean, required: false },
   },
   emits: ['input', 'focusin', 'focusout', 'toggle-menu-btn', 'update:modelValue'],
@@ -45,18 +45,20 @@ export default {
   },
   watch: {
     menuValue(newValue) {
-    // we react to changes in the menuValue prop
+    // we watch for changes in the menuValue prop so as to react to changes
+    // and update the isActive data object with the newvalue.
       this.isActive = newValue;
     },
   },
   methods: {
     toggleMenuBtn(value) {
       // this method emits an event to toggle the menu option if available
-      // to either display the menu or hide it.
+      // to either display the menu or hide it by passing in the the current
+      // state of the isActive data object value.
       this.$emit('toggle-menu-btn', value);
     },
     focusin() {
-      // this method emits an event if the input field is focused in and
+      // this method emits an event if the input field is focused-in and
       // sets the isFocused data object to true.
       this.$emit('focusin');
       this.isFocused = true;

@@ -1,7 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
     <div
-      :class="position"
       class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white rounded-md shadow-white-xl z-10">
       <ul>
         <li
@@ -28,7 +27,7 @@ export default {
   props: {
     options: { type: Array, required: true },
     filter: { type: String, required: false },
-    position: { type: String, required: false },
+    // position: { type: String, required: false },
   },
   emits: ['option-selected'],
   data() {
@@ -38,7 +37,7 @@ export default {
   },
   computed: {
     filterOptions() {
-      // return filtered options containning the supplied string
+      // return filtered options containing the supplied string
       return this.options.filter((item) => item.toLowerCase().indexOf(this.filter.toLowerCase()) !== -1);
     },
   },

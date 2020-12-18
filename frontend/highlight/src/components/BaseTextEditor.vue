@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'TextEditor',
+  name: 'BaseTextEditor',
   inheritAttrs: false,
   props: {
     modelValue: { type: String, required: false },
