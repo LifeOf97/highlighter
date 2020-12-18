@@ -61,7 +61,7 @@ export default createStore({
   // STATE ACTIONS
   // ###############
   actions: {
-    // action to fetch and commit mutation for all available languages.
+    // action to fetch languages and then commit the mutation for all available languages.
     fetchLanguages(context) {
       axios.get('/options/languages/')
         .then((response) => context.commit('setLanguagesOptions', { languages: response.data.result }))
