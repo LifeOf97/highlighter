@@ -1,14 +1,16 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true
-  },
   purge: [],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
+    colors: {
+      transparent: 'transparent',
+      ...colors,
+    },
     extend: {
       spacing: {
+        // extending the spacing.
         '66':	'18rem',
         '68':	'20rem',
         '70':	'22rem',
@@ -19,6 +21,7 @@ module.exports = {
         '80': '32rem',
       },
       boxShadow: {
+        // extending the shadows by adding white shadows.
         'white-xs': '0 0 0 1px rgba(255, 255, 255, 0.05)',
         'white-sm': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
         'white': '0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06)',
@@ -31,9 +34,13 @@ module.exports = {
       },
     },
   },
-  variants: [
-    'responsive', 'group-hover', 'group-focus', 'focus-within', 'first',
-    'last', 'odd', 'even', 'hover', 'focus', 'active', 'visited', 'disabled'
-  ],
-  plugins: []
+  variants: {
+    // extend the variants you want applied by adding to the core util 
+    extend: {
+      boxShadow: ['dark'],
+      animation: ['group-hover', 'group-focus', 'hover', 'focus'],
+      transform: ['group-hover', 'group-focus', 'hover', 'focus'],
+    },
+  },
+  plugins: [],
 }

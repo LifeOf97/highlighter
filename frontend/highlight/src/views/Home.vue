@@ -1,8 +1,8 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div id="home" class="mt-16 w-full h-full bg-white overflow-x-hidden py-4">
+  <div id="home" class="mt-16 w-full h-full md:h-screen bg-white dark:bg-blueGray-800 overflow-x-hidden py-4">
     <!-- top nav and hero div -->
-    <header id="header" class="w-full bg-teal-300 shadow-sm">
+    <header id="header" class="w-full bg-cyan-300 dark:bg-coolGray-900 shadow-sm">
       <!-- start of hero div -->
       <div class="h-66 w-11/12 mx-auto flex pt-6 md:pt-10">
         <div class="flex-1 text-5xl md:text-6xl font-black tracking-tighter">
@@ -15,9 +15,9 @@
       <!-- end of hero div -->
     </header>
     <!-- end of top nav and hero div -->
-    <!-- start od editor div -->
+    <!-- start of editor div -->
     <aside id="editor" class="md:absolute w-full mx-auto h-auto flex justify-end z-10">
-      <div ref="editor" class="w-11/12 mx-auto md:mx-0 md:w-6/12 xl:mr-12 rounded-b-md border-t rounded-md shadow-2xl overflow-hidden -mt-20">
+      <div ref="editor" class="w-11/12 mx-auto md:mx-0 md:w-6/12 xl:mr-12 rounded-lg shadow-2xl dark:shadow-white-lg overflow-hidden -mt-20">
         <keep-alive>
           <component :is="active" @update:component="updateComponent"></component>
         </keep-alive>
@@ -27,23 +27,23 @@
     <!-- start of info div -->
     <aside id="info" class="w-11/12 mx-auto mt-8 md:mt-2 md:py-12 flex flex-wrap justify-between md:flex-col md:space-y-8">
       <div ref="info" class="flex-initial mb-5 md:mb-0">
-        <h3 class="text-2xl font-black text-black">Syntax Highlighter.</h3>
-        <p class="text-sm text-gray-600 font-medium leading-5">
+        <h3 class="text-2xl font-black text-black dark:text-gray-200">Syntax Highlighter.</h3>
+        <p class="text-sm text-gray-400 dark:text-blueGray-500 font-medium leading-5">
           JustHighlight is a code snippet <br/>
           syntax highlighter, that can be used <br/>
           in your blog apps, websites and more.
         </p>
       </div>
       <div ref="info1" class="flex-initial mb-5 md:mb-0">
-        <h3 class="text-2xl font-black text-black">Support & Styling.</h3>
-        <p class="text-sm text-gray-600 font-medium leading-5">
+        <h3 class="text-2xl font-black text-black dark:text-gray-200">Support & Styling.</h3>
+        <p class="text-sm text-gray-400 dark:text-blueGray-500 font-medium leading-5">
           It supports over 400 programming <br>
           languages and text formats.
         </p>
       </div>
       <div ref="info2" class="flex-initial mb-5 md:mb-0">
-        <h3 class="text-2xl font-black text-black">Availability & Usage.</h3>
-        <p class="text-sm text-gray-600 font-medium leading-5">
+        <h3 class="text-2xl font-black text-black dark:text-gray-200">Availability & Usage.</h3>
+        <p class="text-sm text-gray-400 dark:text-blueGray-500 font-medium leading-5">
           It is available over an API, <br>
           it can be used along side any frontend <br>
           framework that can make requests to an api

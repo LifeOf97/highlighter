@@ -1,18 +1,18 @@
 <template>
 <!-- eslint-disable max-len -->
     <div
-      class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white rounded-md shadow-white-xl z-10">
+      class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white dark:bg-blueGray-800 rounded-md shadow-white-xl z-10">
       <ul>
         <li
           v-for="(item, index) in filterOptions"
           :key="index"
-          :class="[selected === item ? 'bg-teal-200' : 'bg-transparent']"
-          class="block hover:bg-teal-200">
+          :class="[selected === item ? 'bg-teal-200 dark:bg-blueGray-600' : 'bg-transparent']"
+          class="block hover:bg-teal-200 dark:hover:bg-blueGray-600">
             <button
               type="button"
               @click="optionSelected(item)"
               class="inline-flex focus:outline-none justify-between items-center w-full h-full px-2 py-1 text-left">
-                <span class="text-gray-900 text-base font-medium truncate">{{item}}</span>
+                <span class="text-gray-800 dark:text-gray-400 text-base font-medium truncate">{{item}}</span>
                 <i :class="[selected === item ? 'text-black' : 'text-transparent']" class="fas fa-check text-md"></i>
             </button>
         </li>

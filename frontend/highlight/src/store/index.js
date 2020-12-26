@@ -86,16 +86,15 @@ export default createStore({
     // action to highlight the code.
     async highlightCode(context, payload) {
       // first, set the loading state to true, by committing the
-      // updateLoading mutation and passing this payload.loading
-      // data as the payload.
-      context.commit('updateLoading', payload.loading);
+      // updateLoading mutation and passing a status: true as payload.
+      context.commit('updateLoading', { status: true });
       // then dispatch the highlightDetails action to update the
-      // highlight object states, passing this payload.highlight
+      // highlight object states, passing payload.highlight
       // data as its payload.
       await context.dispatch('highlightDetails', payload.highlight);
-      // then get the highlight object datas as the data to be sent
+      // then get the highlight object data as the data to be sent
       // along side the post request.
-      // NOTE: i made used of getters, it could be more simple :).
+      // NOTE: i used getters :).
       const data = {
         code: context.getters.getHighlightDetails.code,
         style: context.getters.getHighlightDetails.style,
@@ -108,10 +107,10 @@ export default createStore({
       await axios.post('/highlight/', data)
         .then((response) => {
           // on success, commit the updateHighlighted mutation along
-          // side the its payload data to set/update the highlighted.result state.
-          context.commit('updateHighlighted', { highlighted: response.data.result.data });
-          // then set the loading state back to false by commiting
-          // the updateLoading mutation passing 'status: false' as its payload.
+          // side its payload data to set/update the highlighted.result state.
+          context.commit('updateHighlighted', { highlighted: response.data.result.highlighted });
+          // then set the loading state back to false by commiting the
+          // updateLoading mutation passing 'status: false' as its payload.
           context.commit('updateLoading', { status: false });
         })
         .catch((error) => {
@@ -126,17 +125,17 @@ export default createStore({
   // STATE GETTERS
   // ###############
   getters: {
-    // getter for state languages.
+    // getter to get languages.
     getLanguages(state) { return state.options.languages; },
-    // getter for state formats.
+    // getter to get formats.
     getFormats(state) { return state.options.formats; },
-    // getter for state styles.
+    // getter to get styles.
     getStyles(state) { return state.options.styles; },
-    // getter for state highlight.
+    // getter to get highlight.
     getHighlightDetails(state) { return state.highlight; },
-    // getter for the loading state.
+    // getter to get the loading state.
     getLoading(state) { return state.loading; },
-    // getter for the highlighted code result.
+    // getter to get the highlighted code result.
     getHighlighted(state) { return state.highlighted.result; },
   },
   // ###############

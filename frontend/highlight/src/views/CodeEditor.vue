@@ -1,9 +1,9 @@
 <template>
 <!-- eslint-disable max-len -->
-    <div class="w-full h-full bg-gray-800">
+    <div class="w-full h-full bg-blueGray-700 dark:bg-blueGray-200">
       <form method="post" @submit.prevent class="w-full flex flex-col">
         <!-- start of code editor options -->
-        <div id="editor-options" class="flex-1 flex flex-wrap px-3 py-2 relative bg-gray-800">
+        <div id="editor-options" class="flex-1 flex flex-wrap px-3 py-2 relative bg-blueGray-700 dark:bg-blueGray-200">
           <base-text-select-menu
             :label="'Language:'"
             :placeholder="'---'"
@@ -27,7 +27,7 @@
         <!-- start of code editor text div -->
         <div class="flex-1 h-66">
           <!-- start of button to open code editor -->
-          <div v-if="codeEditor" class="h-66 border-t border-gray-600 flex justify-center items-center bg-gray-800 bg-opacity-50 group">
+          <div v-if="codeEditor" class="h-66 border-t border-gray-400 dark:border-coolGray-300 flex justify-center items-center bg-blueGray-700 dark:bg-blueGray-200 group">
             <button type="button" @click="openEditor()"
               class="px-2 py-1 rounded-md text-lg text-white font-medium bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500
               group-hover:animate-bounce focus:outline-none">Code Editor
@@ -50,7 +50,7 @@
                 ref="texteditor"
                 v-model="code"
                 placeholder="Enter your code here..."
-                class="w-full h-auto resize-none outline-none text-white bg-gray-700 p-4 placeholder-gray-400" />
+                class="w-full h-auto resize-none outline-none text-white dark:text-black bg-blueGray-500 dark:bg-blueGray-300 p-4 placeholder-blueGray-200 dark:placeholder-blueGray-700" />
             </div>
           </transition>
           <!-- end of code editor contained within a transition effect-->
@@ -69,8 +69,8 @@
               leave-to-class="opacity-0 translate-y-5"
               leave-active-class="transition transform duration-100">
               <div v-if="error.state">
-                <i class="fas fa-exclamation-circle text-md text-gray-300 mr-1"></i>
-                <span class="text-xs sm:text-sm font-semibold text-red-500">{{error.message}}</span>
+                <i class="fas fa-exclamation-circle text-md text-gray-200 dark:text-gray-600 mr-1"></i>
+                <span class="text-xs sm:text-sm font-semibold text-red-400">{{error.message}}</span>
               </div>
             </transition>
           </div>
@@ -98,6 +98,7 @@ import BaseTextEditor from '../components/BaseTextEditor.vue';
 
 export default {
   name: 'CodeEditor',
+  emits: ['update:component'],
   data() {
     return {
       code: '',
@@ -150,11 +151,10 @@ export default {
         // error.state to false and error.message to an empty string.
         this.error.state = false;
         this.error.message = '';
-        // then call the store action used to highlight the code snippet.
+        // then call the store action used to highlight the code snippet
+        // passing in the relevant data.
         this.highlightCode({
-          // set the loading status to true.
-          loading: { status: true },
-          // pass highlight the data needed fo highlighting.
+          // pass highlight payload the data needed for highlighting.
           highlight: {
             code: this.code,
             style: this.style,

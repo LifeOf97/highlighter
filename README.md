@@ -53,9 +53,9 @@ Here are the config options for highlighting code snippets.
   // Optional.
   lineNos: 'none', // default
   
-  // FORMAT: HTML => what type of html styling would you prefer? inline styling or
+  // FORMAT: HTML => what type of html styling would you prefer? inline css or
   // classes, this can be one of ['inline', 'class']
-  styling: 'inline', // default
+  css: 'inline', // default
   
   // FORMAT: HTML => class name giving to the div tag wrapping the whole code block
   // defaults to 'justhighlight', NOTE: if linenos is set to table this
