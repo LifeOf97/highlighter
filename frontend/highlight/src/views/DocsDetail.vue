@@ -19,7 +19,7 @@
         <ul class="flex flex-col space-y-4">
           <li class="flex flex-col space-y-4">
             <p class="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-              The justHighlighter api is divided into two endpoints. The highlighter endpoint collects the sourcecode that needs to be highlighted
+              The justHighlight api is divided into two endpoints. The highlighter endpoint collects the sourcecode that needs to be highlighted
               along side relevant data options used in styling the code snippet and returns the
               highlighted format of the sourcecode.
             </p>
@@ -34,15 +34,15 @@
               particular option.
             </p>
             <span class="p-4 border-l-4 border-cyan-300 bg-gray-100 dark:bg-gray-300 text-gray-600">NOTE: Only <b>GET</b> request are allowed for this api endpoints.</span>
-            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Languages option api endpoint. Returns a list of available languages.</span>
+            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Language option api endpoint. Returns a list of available languages.</span>
             <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
               <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/languages/</span>
             </div>
-            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Styles option api endpoint. Returns a list of available styles.</span>
+            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Style option api endpoint. Returns a list of available styles.</span>
             <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
               <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/styles/</span>
             </div>
-            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Formats option api endpoint. Returns a list of available formats.</span>
+            <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Format option api endpoint. Returns a list of available formats.</span>
             <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
               <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/formats/</span>
             </div>

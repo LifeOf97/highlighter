@@ -49,8 +49,7 @@ Here are the config options for highlighting code snippets.
 
   // linenos is used to request if the result should have line numbers
   // or not, this can be one of ['inline', 'table', 'none'], defaults to
-  // 'none', no line numbers.
-  // Optional.
+  // 'none', no line numbers. Optional.
   lineNos: 'none', // default
   
   // FORMAT: HTML => what type of html styling would you prefer? inline css or
@@ -58,21 +57,22 @@ Here are the config options for highlighting code snippets.
   css: 'inline', // default
   
   // FORMAT: HTML => class name giving to the div tag wrapping the whole code block
-  // defaults to 'justhighlight', NOTE: if linenos is set to table this
-  // will append a 'table' making it 'justhighlighttable'.
+  // defaults to 'justhighlight'. NOTE: if "lineNos" is set to table this
+  // will append a 'table' to the class name making it for example 'justhighlighttable'.
   divClass: 'justhighlight', // default
 
   // hlLines is used to specify a list of line numbers to be highlighted in your code snippet
   // this should be an array of numbers. Defaults to an empty array.
   hlLines: [], // default
   
-  // The noBackground option is used to request that the style option selected should not
-  // affect the code background color. this should either be true/false 
-  noBackground: false, // default
-  
   // FORMAT: HTML => classPrefix is used to prefix the css classes used
-  // when 'styling' is set 'class'
+  // when "css" is set "class".
   classPrefix: '' // default is an empty string
+
+  // The noBackground option is used to request that the "style" option selected should not
+  // affect the code background color. this should either be true/false, where true is
+  // "do not apply background color" and false is "apply background color". 
+  noBackground: false, // default
 }
 ```
 

@@ -12,7 +12,7 @@
       <div class="py-6 w-11/12 mx-auto flex flex-col md:flex-row md:justify-between">
         <!-- logo -->
         <div class="flex-1 flex justify-between mb-1 md:mb-0">
-          <h1 class="font-black text-2xl text-black dark:text-white tracking-tight">JustHighlight</h1>
+          <h1 class="font-black text-2xl text-black dark:text-white tracking-tight border-b-4 border-dotted border-black dark:border-white">JustHighlight</h1>
           <button class="md:hidden focus:outline-none">
             <i
               @click="menu = !menu"
