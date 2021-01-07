@@ -98,8 +98,60 @@ The succefull response of a valid request contains the following.
 ## Examples
 
 * **Using axios API**
-* **Using fetch API**
 
+```javascript
+axios.post('https://api.justhighlight.com/highlighter/', {
+    code: "const greet = 'Hello World!'",
+    language: 'javascript',
+    getFormat: 'html',
+    style: 'paraiso-dark',
+    lineNo: 'none',
+    css: 'inline',
+    divClass: 'player',
+    hlLines: [],
+    noBackground: false,
+})
+  .then((response) => {
+      // make use of the returned response as you will.
+      this.highlighted = response.data.result.data;
+  })
+  .catch((error) => {
+      // catch any error what so ever and debug it.
+      console.log(error.response);
+  });
+
+```
+
+* **Using fetch API**
+```javascript
+// get all data needed.
+const data = {
+    code: "const greet = 'Hello World!'",
+    language: 'javascript',
+    getFormat: 'html',
+    style: 'paraiso-dark',
+    lineNo: 'none',
+    css: 'inline',
+    divClass: 'player',
+    hlLines: [],
+    noBackground: false,
+};
+// make a post request using fetch api.
+fetch('https://api.justhighlight.com/highlighter/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+      // make use of the returned response as you will.
+      this.highlighted = data.result.data;
+  })
+  .catch((error) => {
+      // catch any error what so ever and debug it.
+      console.log(error);
+  });
+```
 
 ## Credits
 
