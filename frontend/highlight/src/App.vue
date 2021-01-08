@@ -23,8 +23,8 @@
         <!-- this div block is hidden on small screens and can only be seen with a toggle menu button -->
         <!-- which slides down/up on click -->
         <div
-          :class="[menu ? 'translate-y-0 opacity-100' : '-translate-y-24 md:translate-y-0 opacity-0 md:opacity-100']"
-          class="flex-1 flex justify-center items-center bg-coolGray-700 dark:bg-blueGray-800 absolute top-0 left-0 w-full transition transform duration-300 h-24 md:relative md:block md:bg-transparent md:dark:bg-transparent md:h-auto">
+          :class="[menu ? 'translate-y-0 opacity-100 shadow-white-lg' : '-translate-y-24 md:translate-y-0 opacity-0 md:opacity-100']"
+          class="flex-1 flex justify-center items-center bg-blueGray-900 absolute top-0 left-0 w-full transition transform duration-300 h-24 md:relative md:block md:bg-transparent md:dark:bg-transparent md:h-auto">
           <!-- start of version info -->
           <div class="flex justify-center md:justify-end">
             <div

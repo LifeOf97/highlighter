@@ -9,7 +9,7 @@
         <!-- end of doc left side nav -->
         <!-- start of docs detail -->
         <!-- this detail div takes the full width of the screen on small devices -->
-        <div class="h-screen w-full md:w-2/3 pt-24 overflow-y-auto dark:bg-blueGray-800">
+        <div class="h-screen w-full md:w-2/3 pt-24 overflow-y-auto dark:bg-blueGray-800"  style="scroll-behavior: smooth">
             <docs-detail />
         </div>
         <!-- end of docs detail -->
@@ -17,6 +17,7 @@
         <!-- this div is hidden on small screens, visible on large screens -->
         <div class="sticky top-0 xl:flex justify-center items-center hidden lg:w-1/3 dark:bg-coolGray-900">
         </div>
+        <!-- end of right side nav -->
     </div>
 </template>
 

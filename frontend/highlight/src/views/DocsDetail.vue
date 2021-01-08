@@ -6,7 +6,7 @@
       <h1 class="text-gray-700 dark:text-gray-300 text-3xl sm:text-4xl font-semibold">Introduction</h1>
       <!-- start of JustHighlight info -->
       <div>
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">JustHighlight</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">JustHighlight</h3>
         <p class="my-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">
           JustHighlight is a syntax highlighter api that can be used to highlight code snippets in any kind of website(webapp), blogs
           and other applications that deals with code samples or code hosting.
@@ -14,8 +14,8 @@
       </div>
       <!-- end of JustHighlight info -->
       <!-- start of apis info -->
-      <div class="flex flex-col">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">APIs Endpoint</h3>
+      <div id="apis" class="flex flex-col">
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">APIs Endpoint</h3>
         <ul class="flex flex-col space-y-4">
           <li class="flex flex-col space-y-4">
             <p class="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">
@@ -36,15 +36,15 @@
             <span class="p-4 border-l-4 border-cyan-300 bg-gray-100 dark:bg-gray-300 text-gray-600">NOTE: Only <b>GET</b> request are allowed for this api endpoints.</span>
             <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Language option api endpoint. Returns a list of available languages.</span>
             <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
-              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/languages/</span>
+              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/options/languages/</span>
             </div>
             <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Style option api endpoint. Returns a list of available styles.</span>
             <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
-              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/styles/</span>
+              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/options/styles/</span>
             </div>
             <span class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Format option api endpoint. Returns a list of available formats.</span>
-            <div class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
-              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/formats/</span>
+            <div id="bm-reqres" class="relative p-2 md:p-4 rounded bg-gray-300 group overflow-x-auto">
+              <span class="block text-indigo-500 text-sm sm:text-base" ref="api-link">https://api.justhighlight.com/options/formats/</span>
             </div>
           </li>
         </ul>
@@ -57,7 +57,7 @@
       <h1 class="text-gray-700 dark:text-gray-300 text-3xl sm:text-4xl font-semibold">Request & Response format</h1>
       <!-- start of highlighter main api endpoint -->
       <div class="flex flex-col">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">Highlighter Endpoint</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Highlighter Endpoint</h3>
         <p class="my-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">The <b>request</b> format.</p>
         <!-- start of highlighted request code snippet -->
         <div id="highlighter-request" class="relative bg-coolGray-700 dark:bg-blueGray-700 h-66 rounded overflow-auto cursor-text shadow-inner">
@@ -75,7 +75,7 @@
       <!-- end of highlighter main api endpoint -->
       <!-- start of highlighter options api endpiont -->
       <div class="flex flex-col">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">Options Endpoint</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Options Endpoint</h3>
         <p class="my-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">
           The options endpoint only allows <b>GET</b> request, therefore a get request should be made to any of the options api.
         </p>
@@ -88,22 +88,46 @@
     </div>
     <!-- end of request response format -->
     <!-- start of example -->
-    <div id="reqres-section"  class="my-6 flex flex-col space-y-6">
+    <div id="reqres-section" class="my-6 flex flex-col space-y-6">
       <h1 class="text-gray-700 dark:text-gray-300 text-3xl sm:text-4xl font-semibold">Examples</h1>
       <div id="example-axios" class="flex flex-col space-y-5">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">Using axios api</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Using axios api</h3>
         <div class="relative bg-coolGray-700 dark:bg-blueGray-700 h-56 rounded overflow-auto cursor-text shadow-inner">
           <div class="justhighlight absolute top-0 left-0 h-full w-full text-sm" style="padding: 20px;"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #a6e22e">axios</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;https://api.justhighlight.com/highlighter/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span><br>    <span style="color: #a6e22e">code</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;const greet = &#39;Hello World!&#39;&quot;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">language</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;javascript&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">getFormat</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;html&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">style</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;paraiso-dark&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">lineNo</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">css</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;inline&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">divClass</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;player&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">hlLines</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[],</span><br>    <span style="color: #a6e22e">noBackground</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span><br><span style="color: #f8f8f2">})</span><br>  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span><br>      <span style="color: #75715e">// make use of the returned response as you will.</span><br>      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">highlighted</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">result</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">;</span><br>  <span style="color: #f8f8f2">})</span><br>  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span><br>      <span style="color: #75715e">// catch any error what so ever and debug it.</span><br>      <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">);</span><br>  <span style="color: #f8f8f2">});</span><br></pre></div>
         </div>
       </div>
       <div id="example-fetch" class="flex flex-col space-y-5">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-300">Using fetch api</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Using fetch api</h3>
         <div class="relative bg-coolGray-700 dark:bg-blueGray-700 h-56 rounded overflow-auto cursor-text shadow-inner">
           <div class="justhighlight absolute top-0 left-0 h-full w-full text-sm" style="padding: 20px;"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #75715e">// get all data needed.</span><br><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><br>    <span style="color: #a6e22e">code</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;const greet = &#39;Hello World!&#39;&quot;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">language</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;javascript&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">getFormat</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;html&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">style</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;paraiso-dark&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">lineNo</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">css</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;inline&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">divClass</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;player&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">hlLines</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[],</span><br>    <span style="color: #a6e22e">noBackground</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span><br><span style="color: #f8f8f2">};</span><br><span style="color: #75715e">// make a post request using fetch api.</span><br><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;https://api.justhighlight.com/highlighter/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span><br>    <span style="color: #a6e22e">method</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;POST&#39;</span><span style="color: #f8f8f2">,</span><br>    <span style="color: #a6e22e">headers</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&#39;Content-Type&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;application/json&#39;</span><span style="color: #f8f8f2">},</span><br>    <span style="color: #a6e22e">body</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">JSON</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stringify</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">),</span><br><span style="color: #f8f8f2">})</span><br>  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">())</span><br>  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span><br>      <span style="color: #75715e">// make use of the returned response as you will.</span><br>      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">highlighted</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">result</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">;</span><br>  <span style="color: #f8f8f2">})</span><br>  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span><br>      <span style="color: #75715e">// catch any error what so ever and debug it.</span><br>      <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span><br>  <span style="color: #f8f8f2">});</span><br></pre></div>
         </div>
       </div>
     </div>
     <!-- end of example -->
+    <!-- start of features available -->
+    <div id="features-section" class="my-6 flex flex-col space-y-6">
+      <h1 class="text-gray-700 dark:text-gray-300 text-3xl sm:text-4xl font-semibold">Features</h1>
+      <!-- start of formats available -->
+      <div id="formats-features" class="flex flex-col space-y-5">
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Formats available.</h3>
+        <ul class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+          <li v-for="form in formats" :key="form.short" class="list-disc list-inside">{{form.short}}
+            <a v-if="form.full" :href="form.url" target="_blank" class="text-cyan-400 hover:text-cyan-600"> - {{form.full}}</a>
+            <i v-if="form.url" class="fas fa-external-link-alt text-xs ml-1"></i>
+          </li>
+        </ul>
+      </div>
+      <!-- end of formats available -->
+      <!-- start of styles available -->
+      <div id="styles-section" class="flex flex-col space-y-5">
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Styles available.</h3>
+        <div class="flex flex-wrap text-sm sm:text-base text-gray-600 dark:text-gray-400">
+          <span v-for="style in getStyles" :key="style" class="mr-2">{{style}}</span>
+        </div>
+      </div>
+      <!-- end of styles available -->
+    </div>
+    <!-- end of features available -->
     <!-- start of footer -->
     <base-footer />
     <!-- end of footer -->
@@ -111,10 +135,32 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import BaseFooter from '../components/BaseFooter.vue';
 
 export default {
   name: 'DocsDetail',
   components: { BaseFooter },
+  data() {
+    return {
+      formats: [
+        // features formats list
+        { short: 'HTML', full: 'Hypertext Markup Language.', url: 'https://www.w3schools.com/html/html_intro.asp' },
+        { short: 'SVG', full: 'Scalable Vector Graphics.', url: 'https://developer.mozilla.org/en-US/docs/Web/SVG' },
+        { short: 'BBCode', full: 'Bulletin Board Code.', url: 'https://en.wikipedia.org/wiki/BBCode' },
+        { short: 'RTF', full: 'Rich Text Format.', url: 'https://en.wikipedia.org/wiki/Rich_Text_Format' },
+        { short: 'Terminal256.', full: null, url: null },
+        { short: 'Terminal.', full: null, url: null },
+        { short: 'Text.', full: null, url: null },
+        { short: 'IRC.', full: null, url: null },
+      ],
+    };
+  },
+  computed: {
+    // using object spread operator list the getter methods needed.
+    ...mapGetters([
+      'getStyles',
+    ]),
+  },
 };
 </script>
