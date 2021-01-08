@@ -129,7 +129,9 @@
     </div>
     <!-- end of features available -->
     <!-- start of footer -->
-    <base-footer />
+    <div class="border-t border-gray-300 dark:border-gray-700 pt-4">
+      <base-footer />
+    </div>
     <!-- end of footer -->
   </div>
 </template>
