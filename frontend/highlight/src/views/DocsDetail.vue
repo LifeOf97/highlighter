@@ -109,7 +109,7 @@
       <h1 class="text-gray-700 dark:text-gray-300 text-3xl sm:text-4xl font-semibold">Features</h1>
       <!-- start of formats available -->
       <div id="formats-features" class="flex flex-col space-y-5">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Formats available.</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Formats available</h3>
         <ul class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
           <li v-for="form in formats" :key="form.short" class="list-disc list-inside">{{form.short}}
             <a v-if="form.full" :href="form.url" target="_blank" class="text-cyan-400 hover:text-cyan-600"> - {{form.full}}</a>
@@ -120,7 +120,7 @@
       <!-- end of formats available -->
       <!-- start of styles available -->
       <div id="styles-section" class="flex flex-col space-y-5">
-        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Styles available.</h3>
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Styles available</h3>
         <div class="flex flex-wrap text-sm sm:text-base text-gray-600 dark:text-gray-400">
           <span v-for="style in getStyles" :key="style" class="mr-2">{{style}}</span>
         </div>
