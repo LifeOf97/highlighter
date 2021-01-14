@@ -10,20 +10,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Then assign it to the variable called 'config' which becomes
 # a dictionary object.
 # using the 'Path' lib to read the json file as text
-secret_file = Path('secret.json').read_text()
+SECRET_FILE = Path('secret.json').read_text()
 # then convert the text to json format usig the json lib.
 # and assign it to the 'config' variable.
-config = json.loads(secret_file)
+CONFIG = json.loads(SECRET_FILE)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get('SECRET_KEY')
+SECRET_KEY = CONFIG.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', default=True)
-DEBUG = config.get('DEBUG')
+DEBUG = CONFIG.get('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.208', '192.168.1.101']
 
@@ -81,10 +81,8 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/highlight.cnf',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'justHighlight_db',
     }
 }
 

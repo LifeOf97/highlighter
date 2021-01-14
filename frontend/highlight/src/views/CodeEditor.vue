@@ -36,7 +36,7 @@
           <!-- end of button to open code editor -->
           <!-- start of code editor contained within a transition effect-->
           <transition
-            name="show-editor"
+            name="scale-editor"
             enter-from-class="scale-0 opacity-0"
             enter-to-class=""
             enter-active-class="transition transform duration-300"
@@ -61,7 +61,7 @@
           <!-- start of div to handle errors -->
           <div class="flex-1">
             <transition
-              name="error"
+              name="fade-slide-error"
               enter-to-class=""
               enter-from-class="opacity-0 translate-y-5"
               enter-active-class="transition transform duration-100"
@@ -111,6 +111,7 @@ export default {
   },
   components: { BaseTextSelectMenu, BaseTextEditor },
   created() {
+    // run this methods when this instance is created.
     this.fetchLanguages();
     this.fetchFormats();
     this.fetchStyles();
@@ -163,6 +164,7 @@ export default {
           },
         });
         // then emit an event to change the rendered component to the codeResult component.
+        // passing the name of the new component as its value.
         this.$emit('update:component', 'CodeResult');
       } else {
         // else if this statement returns false then set the error.state

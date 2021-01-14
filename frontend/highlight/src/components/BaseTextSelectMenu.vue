@@ -52,7 +52,7 @@ export default {
       // BaseMenu component is captured.
       this.selected = item;
       // it also emits an event passing in the selected option.
-      this.$emit('option-selected', item);
+      this.$emit('option-selected', this.selected);
       // when a menu option is selected, close the menu.
       this.menu = false;
     },
@@ -61,6 +61,8 @@ export default {
       // the BaseInputDrop component. This sets the menu data object to true/false
       // which toggles the show/hide state.
       this.menu = value;
+      // it also emits an event passing in the selected option.
+      this.$emit('option-selected', this.selected);
     },
   },
 };

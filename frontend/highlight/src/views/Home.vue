@@ -21,7 +21,7 @@
       <aside id="editor" class="md:absolute w-full mx-auto h-auto flex justify-end z-10">
         <div ref="editor" class="w-11/12 mx-auto md:mx-0 md:w-6/12 xl:mr-12 rounded-lg shadow-2xl dark:shadow-white-lg overflow-hidden -mt-20">
           <keep-alive>
-            <component :is="active" @update:component="updateComponent"></component>
+            <component :is="activeComponent" @update:component="updateComponent"></component>
           </keep-alive>
         </div>
       </aside>
@@ -81,7 +81,7 @@ export default {
     this.gsapAnim1();
   },
   computed: {
-    active() {
+    activeComponent() {
       return this.current;
     },
   },

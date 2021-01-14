@@ -80,13 +80,14 @@
     <div class="w-full" @click="menu = false">
       <router-view v-slot="{ Component }">
         <transition
-          name="visib"
+          name="fade"
+          mode="in-out"
           enter-from-class="opacity-0"
           enter-to-class=""
-          enter-active-class="transition transform duration-500 ease-in"
+          enter-active-class="transition transform duration-300 ease-in"
           leave-from-class=""
           leave-to-class="opacity-0"
-          leave-active-class="transition transform duration-500 ease-in">
+          leave-active-class="transition transform duration-300 ease-in">
           <keep-alive>
             <component :is="Component"></component>
           </keep-alive>
@@ -147,7 +148,7 @@ export default {
     gsapAnimDarkModeTem() {
       // method to apply gsap animation on the dark mode toggle button
       // get the template ref assigned to the dark mode template
-      const { darkModeTem } = this.$refs; // object destructuring
+      const { darkModeTem } = this.$refs;
       gsap.from(darkModeTem, {
         delay: 8, opacity: 0, scale: 0, duration: 1,
       });

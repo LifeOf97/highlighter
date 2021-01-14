@@ -8,7 +8,7 @@
       <div class="w-full flex justify-start items-center p-2 bg-blueGray-700 dark:bg-blueGray-200">
         <button
           type="submit"
-          @click="$emit('update:component', 'CodeEditor')"
+          @click="updateComponent"
           class="px-2 py-1 bg-gradient-to-tr from-blue-600 via-pink-500 to-red-500 shadow-lg rounded-lg inline-flex place-items-center space-x-2
           hover:from-red-500 hover:via-pink-500 hover:to-blue-600 transition duration-500 ease-out focus:outline-none">
             <i class="fas fa-long-arrow-alt-left text-lg text-black"></i>
@@ -30,6 +30,11 @@ export default {
   },
   computed: {
     ...mapGetters(['getHighlighted', 'getLoading']),
+  },
+  methods: {
+    updateComponent() {
+      this.$emit('update:component', 'CodeEditor');
+    },
   },
 };
 </script>

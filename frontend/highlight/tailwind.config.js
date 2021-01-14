@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     colors: {
       transparent: 'transparent',
-      ...colors,
+      ...colors, // object destructuring
     },
     extend: {
       spacing: {
