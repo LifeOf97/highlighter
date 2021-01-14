@@ -122,10 +122,32 @@
       <div id="styles-section" class="flex flex-col space-y-5">
         <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Styles available</h3>
         <div class="flex flex-wrap text-sm sm:text-base text-gray-600 dark:text-gray-400">
-          <span v-for="style in getStyles" :key="style" class="mr-2">{{style}}</span>
+          <span v-for="style in styles" :key="style" class="mr-2">{{style}}</span>
         </div>
       </div>
       <!-- end of styles available -->
+      <!-- start of important info -->
+      <div class="my-6 flex flex-col space-y-6">
+        <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Important</h3>
+        <div>
+          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Please note concerning the <b>formats</b> available, That:</p>
+          <ul class="my-4 flex flex-col space-y-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            <li class="list-inside list-disc">
+              The <b>HTML</b> format should be used when playing with the
+              <router-link :to="{name: 'Home'}" class="text-cyan-400 hover:text-cyan-600">justHighlight code editor</router-link> as this is easily formatted to
+              represent the  the code snippet by the browser.
+            </li>
+            <li class="list-inside list-disc">
+              The <b>SVG</b> format is still experimental as indicated in the official
+              <a href="https://pygments.org/docs/formatters/#SvgFormatter" target="_blank" class="text-cyan-400 hover:text-cyan-600">pygments formatters documentation</a>
+              <i class="fas fa-external-link-alt text-xs ml-1"></i>
+            </li>
+            <li class="list-inside list-disc">The <b>Text</b> format is simply returned to you as written. But why is it an option the?</li>
+            <li class="list-inside list-disc">As for the rest of the formatters, please use in environments where they will be fully represented.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- end of important info -->
     </div>
     <!-- end of features available -->
     <!-- start of footer -->
@@ -137,7 +159,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import BaseFooter from '../components/BaseFooter.vue';
 
 export default {
@@ -156,13 +177,13 @@ export default {
         { short: 'Text.', full: null, url: null },
         { short: 'IRC.', full: null, url: null },
       ],
+      styles: [
+        'abap', 'algol', 'algol_nu', 'arduino', 'autumn', 'borland', 'bw', 'colorful', 'default', 'emacs', 'friendly',
+        'fruity', 'igor', 'inkpot', 'lovelace', 'manni', 'monokai', 'murphy', 'native', 'paraiso-dark', 'paraiso-light',
+        'pastie', 'perldoc', 'rainbow_dash', 'rrt', 'sas', 'solarized-dark', 'solarized-light', 'stata', 'stata-dark',
+        'stata-light', 'tango', 'trac', 'vim', 'vs', 'xcode',
+      ],
     };
-  },
-  computed: {
-    // using object spread operator list the getter methods needed.
-    ...mapGetters([
-      'getStyles',
-    ]),
   },
 };
 </script>

@@ -4,11 +4,8 @@
     :class="[darkMode ? 'dark' : '']"
     id="nav" class="relative bg-white bg-scroll">
     <!-- start of top nav -->
-    <nav
-      ref="topNav"
-      id="topNav"
-      :class="[navPosition ? 'shadow-xl dark:shadow-white-xl z-20' : 'z-20']"
-      class="fixed top-0 left-0 w-full bg-cyan-300 dark:bg-coolGray-900 transition duration-700">
+    <nav ref="topNav" id="topNav" :class="[navPosition ? 'shadow-xl dark:shadow-white-xl' : '']"
+      class="fixed top-0 left-0 w-full bg-cyan-300 dark:bg-coolGray-900 transition duration-700 z-20">
       <div class="py-6 w-11/12 mx-auto flex flex-col md:flex-row md:justify-between">
         <!-- logo -->
         <div class="flex-1 flex justify-between mb-1 md:mb-0">
@@ -80,17 +77,16 @@
     </nav>
     <!-- end of top nav -->
     <!-- start of router view -->
-    <div
-      class="w-full" @click="menu = false">
+    <div class="w-full" @click="menu = false">
       <router-view v-slot="{ Component }">
         <transition
-          name="slideup"
+          name="visib"
           enter-from-class="opacity-0"
           enter-to-class=""
-          enter-active-class="transition transform duration-100 dura ease-in"
+          enter-active-class="transition transform duration-500 ease-in"
           leave-from-class=""
           leave-to-class="opacity-0"
-          leave-active-class="transition transform duration-100 ease-in">
+          leave-active-class="transition transform duration-500 ease-in">
           <keep-alive>
             <component :is="Component"></component>
           </keep-alive>
@@ -135,6 +131,7 @@ export default {
     },
   },
   mounted() {
+    // methods to be applied when the instance is mounted.
     window.addEventListener('scroll', this.scrollPosition);
     window.addEventListener('resize', this.screenResize);
     this.gsapAnimDarkModeTem();
@@ -150,7 +147,7 @@ export default {
     gsapAnimDarkModeTem() {
       // method to apply gsap animation on the dark mode toggle button
       // get the template ref assigned to the dark mode template
-      const { darkModeTem } = this.$refs;
+      const { darkModeTem } = this.$refs; // object destructuring
       gsap.from(darkModeTem, {
         delay: 8, opacity: 0, scale: 0, duration: 1,
       });

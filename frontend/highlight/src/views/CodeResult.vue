@@ -4,9 +4,7 @@
       <div v-if="getLoading" class="h-full w-full flex items-center justify-center">
         <i class="fas fa-spinner text-4xl text-white animate-spin"></i>
       </div>
-      <div v-else class="overflow-y-auto overscroll-x-auto h-68">
-        <div v-html="getHighlighted"></div>
-      </div>
+      <div v-else v-html="getHighlighted" class="overflow-y-auto overscroll-x-auto h-68"></div>
       <div class="w-full flex justify-start items-center p-2 bg-blueGray-700 dark:bg-blueGray-200">
         <button
           type="submit"

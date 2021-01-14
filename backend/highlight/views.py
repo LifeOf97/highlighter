@@ -155,7 +155,7 @@ class Highlighter(APIView):
 
                 formatter = SvgFormatter(
                     style=style, nowrap=False, fontfamily='monospace',
-                    fontsize='16px', linenos=linenos,
+                    fontsize='16px', linenos=linenos, xoffset='20', yoffset="40"
                 )
                 highlighted = highlight(code, lexer, formatter)
                 data = {

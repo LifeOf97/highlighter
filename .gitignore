@@ -2,7 +2,8 @@
 # ignore the virtual environment
 backend/venv/
 
-# ignore files randomly created
+# ignore files randomly created in the
+# backenf folder
 backend/status.txt
 backend/pygment.txt
 backend/formatters.txt
@@ -18,7 +19,8 @@ backend/db.sqlite3-journal
 #JAVASCRIPT (node)
 # Dependency directories
 frontend/highlight/node_modules/
-frontend/highlight/node_modules/*
+frontend/node_modules
+node_modules/
 
 # vscode stuff
 .vscode/
