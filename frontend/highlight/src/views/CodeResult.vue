@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
     <div class="w-full shadow-2xl rounded-md h-70 flex flex-col justify-between bg-blueGray-700 dark:bg-blueGray-300">
-      <div v-if="getLoading" class="h-full w-full flex items-center justify-center">
+      <div v-if="getLoadingResult" class="h-full w-full flex items-center justify-center">
         <i class="fas fa-spinner text-4xl text-white animate-spin"></i>
       </div>
       <div v-else v-html="getHighlighted" class="overflow-y-auto overscroll-x-auto h-68"></div>
@@ -29,7 +29,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getHighlighted', 'getLoading']),
+    ...mapGetters(['getHighlighted', 'getLoadingResult']),
   },
   methods: {
     updateComponent() {

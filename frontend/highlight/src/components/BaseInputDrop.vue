@@ -13,9 +13,9 @@
           autocomplete="off"
           v-bind="$attrs"
           :value="modelValue"
-          @input="$emit('update:modelValue', $event.target.value)"
-          @focusin="focusin()"
-          @focusout="focusout()"
+          @input="emitValue"
+          @focusin="focusin"
+          @focusout="focusout"
           aria-haspopup="listbox"
           aria-required="true"
           class="bg-transparent text-sm text-white dark:text-gray-800 w-32 font-normal focus:outline-none placeholder-gray-400 dark:placeholder-gray-600" />
@@ -51,6 +51,18 @@ export default {
     },
   },
   methods: {
+    emitValue(e) {
+      let { value } = e.target;
+      // if the input binding has an lower modifier.
+      if (this.modelModifiers.lower) {
+        value = value.toLowerCase();
+      } else if (this.modelModifiers.capitalize) { // if the input binding has an capitalize modifier.
+        value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      } else if (this.modelModifiers.upper) { // if the input binding has an upper modifier.
+        value = value.toUpperCase();
+      }
+      this.$emit('update:modelValue', value);
+    },
     toggleMenuBtn(value) {
       // this method emits an event to toggle the menu option if available
       // to either display the menu or hide it by passing in the the current

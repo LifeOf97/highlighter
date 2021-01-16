@@ -144,6 +144,7 @@
             </li>
             <li class="list-inside list-disc">The <b>Text</b> format is simply returned to you as written. But why is it an option the?</li>
             <li class="list-inside list-disc">As for the rest of the formatters, please use in environments where they will be fully represented.</li>
+            <li class="list-inside list-disc">All code snippet written on the code editor is never saved nor is ever executed.</li>
           </ul>
         </div>
       </div>

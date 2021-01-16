@@ -8,18 +8,21 @@
             :label="'Language:'"
             :placeholder="'---'"
             :options="getLanguages"
+            :loading="getLoadingLanguage"
             @option-selected="setLanguage"
             class="flex-1" />
           <base-text-select-menu
             :label="'Return code in:'"
             :placeholder="'---'"
             :options="getFormats"
+            :loading="getLoadingFormat"
             @option-selected="setFormat"
             class="mr-2 flex-initial" />
           <base-text-select-menu
             :label="'Style:'"
             :placeholder="'---'"
             :options="getStyles"
+            :loading="getLoadingStyle"
             @option-selected="setStyle"
             class="flex-initial" />
         </div>
@@ -117,7 +120,11 @@ export default {
     this.fetchStyles();
   },
   computed: {
-    ...mapGetters(['getLanguages', 'getFormats', 'getStyles']),
+    ...mapGetters([
+      'getLanguages', 'getFormats', 'getStyles',
+      'getLoadingLanguage', 'getLoadingFormat',
+      'getLoadingStyle',
+    ]),
   },
   methods: {
     ...mapActions([
@@ -155,7 +162,7 @@ export default {
         // then call the store action used to highlight the code snippet
         // passing in the relevant data.
         this.highlightCode({
-          // pass highlight payload the data needed for highlighting.
+          // pass highlight as the payload data needed for highlighting.
           highlight: {
             code: this.code,
             style: this.style,
@@ -167,8 +174,9 @@ export default {
         // passing the name of the new component as its value.
         this.$emit('update:component', 'CodeResult');
       } else {
-        // else if this statement returns false then set the error.state
-        // to true and the error.message to a warning message.
+        // else if length of text in the code editor is 0 this statement
+        // returns false, then set the error.state object to true and the
+        // error.message object to a warning message.
         this.error.state = true;
         this.error.message = 'Please type in some code snippet.';
       }

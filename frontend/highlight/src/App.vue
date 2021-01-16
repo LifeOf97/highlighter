@@ -54,7 +54,7 @@
                   :to="{name: 'Home'}"
                   class="'flex px-2 py-1 justify-center items-center'">
                     <span @click="menu = false" class="font-semibold text-base text-white md:text-gray-800 md:dark:text-gray-200 group-hover:text-pink-500 transition duration-500">Home</span>
-                  </router-link>
+                </router-link>
               </div>
               <!-- end of router links to docs and back to home page -->
               <!-- start of social links -->
@@ -80,14 +80,14 @@
     <div class="w-full" @click="menu = false">
       <router-view v-slot="{ Component }">
         <transition
-          name="fade"
-          mode="in-out"
+          name="fade-scale"
+          mode=""
           enter-from-class="opacity-0"
           enter-to-class=""
-          enter-active-class="transition transform duration-300 ease-in"
+          enter-active-class="transition transform duration-100 ease-in"
           leave-from-class=""
           leave-to-class="opacity-0"
-          leave-active-class="transition transform duration-300 ease-in">
+          leave-active-class="transition transform duration-100 ease-in">
           <keep-alive>
             <component :is="Component"></component>
           </keep-alive>

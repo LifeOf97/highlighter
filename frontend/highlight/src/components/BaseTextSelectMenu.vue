@@ -6,21 +6,22 @@
         :label="label"
         :placeholder="placeholder"
         :menuValue="menu"
-        v-model="selected"
+        v-model.lower="selected"
         @toggle-menu-btn="toggleMenuBtn"
         @focusin="menu = true"/>
       <!-- base menu, activated with dropdown button or when input is focused -->
       <transition
         name="slide-menu"
-        enter-from-class="-translate-y-3 opacity-0"
+        enter-from-class="opacity-0 scale-0"
         enter-to-class=""
-        enter-active-class="transition transform duration-200"
+        enter-active-class="transition duration-100"
         leave-from-class=""
-        leave-to-class="-translate-y-3 opacity-0"
-        leave-active-class="transition transform duration-200">
+        leave-to-class="opacity-0 scale-0"
+        leave-active-class="transition duration-100">
         <base-menu
           v-if="menu"
           :options="options"
+          :loading="loading"
           :filter="selected"
           @option-selected="menuOptionSelected" />
       </transition>
@@ -36,6 +37,7 @@ export default {
   props: {
     options: { type: Array, required: true },
     placeholder: { type: String, required: true },
+    loading: { type: Boolean, required: false },
     label: { type: String, required: false, default: 'label' },
   },
   emits: ['option-selected'],

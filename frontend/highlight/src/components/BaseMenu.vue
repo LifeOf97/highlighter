@@ -1,7 +1,10 @@
 <template>
 <!-- eslint-disable max-len -->
-    <div
-      class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white dark:bg-blueGray-800 rounded-md shadow-white-xl z-10">
+  <div>
+    <div v-if="loading" id="loading-view" class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white dark:bg-blueGray-800 rounded-md shadow-white-xl z-10 flex justify-center items-center">
+      <i class="fas fa-spinner text-4xl text-blueGray-800 dark:text-white animate-spin"></i>
+    </div>
+    <div v-else id="data-view" class="absolute top-0 mt-16 w-40 h-56 overflow-y-auto bg-white dark:bg-blueGray-800 rounded-md shadow-white-xl z-10">
       <ul>
         <li
           v-for="(item, index) in filterOptions"
@@ -18,6 +21,7 @@
         </li>
       </ul>
     </div>
+  </div>
 </template>
 
 <script>
@@ -27,12 +31,13 @@ export default {
   props: {
     options: { type: Array, required: true },
     filter: { type: String, required: false },
-    // position: { type: String, required: false },
+    loading: { type: Boolean, required: false },
   },
   emits: ['option-selected'],
   data() {
     return {
       selected: '',
+      yes: true,
     };
   },
   computed: {
