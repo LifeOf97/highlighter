@@ -1,8 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div
-    :class="[darkMode ? 'dark' : '']"
-    id="nav" class="relative bg-white bg-scroll">
+  <div :class="[darkMode ? 'dark' : '']" id="nav" class="relative bg-white bg-scroll">
     <!-- start of top nav -->
     <nav ref="topNav" id="topNav" :class="[navPosition ? 'shadow-xl dark:shadow-white-xl' : '']"
       class="fixed top-0 left-0 w-full bg-cyan-300 dark:bg-coolGray-900 transition duration-700 z-20">
@@ -11,9 +9,7 @@
         <div class="flex-1 flex justify-between mb-1 md:mb-0">
           <h1 class="font-black text-2xl text-black dark:text-white tracking-tight border-b-4 border-dotted border-black dark:border-white">JustHighlight</h1>
           <button class="md:hidden focus:outline-none">
-            <i
-              @click="menu = !menu"
-              class="fas fa-bars text-3xl text-gray-600 hover:text-red-500 transition duration-200"></i>
+            <i @click="menu = !menu" class="fas fa-bars text-3xl text-gray-600 hover:text-red-500 transition duration-200"></i>
           </button>
         </div>
         <!-- start of version info, documentation url, and social links -->

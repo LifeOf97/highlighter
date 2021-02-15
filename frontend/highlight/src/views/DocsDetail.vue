@@ -121,7 +121,7 @@
       <!-- start of styles available -->
       <div id="styles-section" class="flex flex-col space-y-5">
         <h3 class="text-2xl font-medium text-gray-700 dark:text-gray-300 border-b border-gray-300">Styles available</h3>
-        <div class="flex flex-wrap text-sm sm:text-base text-gray-600 dark:text-gray-400">
+        <div class="flex flex-wrap text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify">
           <span v-for="style in styles" :key="style" class="mr-2">{{style}}</span>
         </div>
       </div>
@@ -135,16 +135,16 @@
             <li class="list-inside list-disc">
               The <b>HTML</b> format should be used when playing with the
               <router-link :to="{name: 'Home'}" class="text-cyan-400 hover:text-cyan-600">justHighlight code editor</router-link> as this is easily formatted to
-              represent the  the code snippet by the browser.
+              represent the code snippet by the browser.
             </li>
             <li class="list-inside list-disc">
               The <b>SVG</b> format is still experimental as indicated in the official
               <a href="https://pygments.org/docs/formatters/#SvgFormatter" target="_blank" class="text-cyan-400 hover:text-cyan-600">pygments formatters documentation</a>
               <i class="fas fa-external-link-alt text-xs ml-1"></i>
             </li>
-            <li class="list-inside list-disc">The <b>Text</b> format is simply returned to you as written. But why is it an option the?</li>
+            <li class="list-inside list-disc text">The <b>Text</b> format is simply returned to you as written. But why is it an option then?</li>
             <li class="list-inside list-disc">As for the rest of the formatters, please use in environments where they will be fully represented.</li>
-            <li class="list-inside list-disc">All code snippet written on the code editor is never saved nor is ever executed.</li>
+            <li class="list-inside list-disc">All code snippet written on the code editor is never saved neither is it ever executed.</li>
           </ul>
         </div>
       </div>

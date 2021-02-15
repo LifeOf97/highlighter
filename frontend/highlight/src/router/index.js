@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Docs from '../views/Docs.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 
 const routes = [
   {
@@ -18,8 +19,9 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'PageNotFound',
-    component: () => import(/* webpackChunkName: "pageNotFound" */ '../views/PageNotFound.vue'),
-    meta: { title: 'Error | Page not found.' },
+    component: PageNotFound,
+    // component: () => import(/* webpackChunkName: "pageNotFound" */ '../views/PageNotFound.vue'),
+    meta: { title: '404 | Page not found.' },
   },
 ];
 
@@ -29,7 +31,7 @@ const router = createRouter({
 });
 
 router.afterEach((to) => {
-  // update the title of every route page.
+  // update the title of every new route page.
   document.title = to.meta.title || 'JustHighlight';
 });
 
