@@ -7,72 +7,67 @@ from pygments.formatters.irc import IRCFormatter
 from pygments.formatters.rtf import RtfFormatter
 from pygments.formatters.svg import SvgFormatter
 from rest_framework.permissions import AllowAny
-from pygments.formatters.img import (
-    JpgImageFormatter, BmpImageFormatter,
-    ImageFormatter, GifImageFormatter,
-)
+# from pygments.formatters.img import (
+#     JpgImageFormatter, BmpImageFormatter,
+#     ImageFormatter, GifImageFormatter,
+# )
 from .serializers import HighlighterSerializer
 from pygments.lexers import get_lexer_by_name, get_all_lexers
 from pygments.styles import get_style_by_name, get_all_styles
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
-from .others import PrettyJSONRenderer
 from rest_framework import status
 from pygments import highlight
 
-# create class api
+
 class Highlighter(APIView):
     """
-    Class API view.
-    does not have an queryset attribute. And makes use of the pygments
-    python library.
-
-    post:
-    only allows post request along side the data(code text) to highlight.
+    Highlighter API
     """
     permission_classes = [AllowAny]
-    renderer_classes = [PrettyJSONRenderer]
 
     def post(self, request, format=None):
+        """
+        Takes a code snippet, returns the highlighted code.
+        """
         serializer = HighlighterSerializer(data=request.data, context={'request': request})
         
         # if the serializer is valid, run this statement.
         if serializer.is_valid():
-            code: str = serializer.data.get('code')
-            lexer = get_lexer_by_name(serializer.data.get('language'))
-            style = get_style_by_name(serializer.data.get('style'))
-            getFormat: str = serializer.data.get('getFormat')
+            code = serializer.validated_data.get('code')
+            lexer = get_lexer_by_name(serializer.validated_data.get('language'))
+            style = get_style_by_name(serializer.validated_data.get('style'))
+            getFormat: str = serializer.validated_data.get('getFormat')
 
             #---more options, for formatters that require this settings.
 
             # linenos is used to determine if the result should have line numbers
             # activated or not, this can be one of ['inline', 'table', 'none'],
-            # NOTE: 'none' is converted to False over here, defuaul is also
-            # False, that means no line numbers.
-            linenos = False if serializer.data.get('lineNos') == 'none' else serializer.data.get('lineNos')
+            # NOTE: 'none' is converted to False over here, default is False.
+            linenos = False if serializer.validated_data.get('lineNos') == 'none' else serializer.validated_data.get('lineNos')
             
             # HTML: noclasses is used to determine if the user requires inline css
             # styling or css classes, if the css serializer data is 'inline', it
             # then means True for inline css styling else if the css data is 'class'
             # it then means False for 'inline' and True for 'class' styling.
-            noclasses = True if serializer.data.get('css') == 'inline' else False
+            noclasses = True if serializer.validated_data.get('css') == 'inline' else False
             
             # HTML: class name to wrap the whole code block, defaults to highlighter,
             # NOTE: if linenos is set to table the cssclass name will append a 
             # 'table' making it 'highlightertable'.
-            cssclass: str = serializer.data.get('divClass')
+            cssclass: str = serializer.validated_data.get('divClass')
 
             # Specify a list of lines to be highlighted in your result.
-            hl_lines: list = serializer.data.get('hlLines')
+            hl_lines: list = serializer.validated_data.get('hlLines')
             
             # should the style selected also affect the overall code background?
             # defaults to False.
-            nobackground: bool = serializer.data.get('noBackground')
+            nobackground: bool = serializer.validated_data.get('noBackground')
 
             # HTML: prefix the css classes used when 'noclasses' is set to 'class'
             # which means False for 'inline' styling and True for 'class' styling
-            classprefix: str = serializer.data.get('classPrefix')
+            classprefix: str = serializer.validated_data.get('classPrefix')
 
             # custom inline css styles to insert into the div container
             # holding the main code snippet. NOTE: this is not gotten
@@ -81,14 +76,14 @@ class Highlighter(APIView):
             
             # full is used to define if the user requires a full html
             # document, defaults to False
-            # full: bool = serializer.data.get('full')
+            # full: bool = serializer.validated_data.get('full')
             
             # the title of the html document if full is set to True
-            # title: str = serializer.data.get('title')
+            # title: str = serializer.validated_data.get('title')
 
             # separate is used along side 'full' argument to request a separate
             # css style result and a body result, default to False
-            # separate: bool = serializer.data.get('separate')
+            # separate: bool = serializer.validated_data.get('separate')
             
 
             # which formatter was selected by the user?
@@ -207,47 +202,34 @@ class Highlighter(APIView):
 
 class Options(APIView):
     """
-    Class based API view to get the highlighter options values.
-
-    get:
-    only allows get method.
+    Options API
     """
     languages = sorted([lexer[0].lower() for lexer in get_all_lexers()])
     styles = sorted([style for style in get_all_styles()])
     formats = sorted(['bbcode', 'html', 'irc', 'rtf', 'svg', 'text', 'terminal', 'terminal256'])
-    renderer_classes = [PrettyJSONRenderer]
 
-    def get(self, request, option=None, format=None):
+    def get(self, request, option=None):
         # We made use of 'str' url kwargs so as to capture the type
         # of option the user is requesting, and then return the
         # appropriate result these can be one of
         # ['languages', 'styles', 'formats'].
 
         if option == "languages":
-            data = {"result": self.languages}
-            return Response(data, status=status.HTTP_200_OK )
+            return Response(data={"result": self.languages}, status=status.HTTP_200_OK )
         
         elif option == "formats":
-            data = {"result": self.formats}
-            return Response(data, status=status.HTTP_200_OK )
+            return Response(data = {"result": self.formats}, status=status.HTTP_200_OK )
         
         elif option == "styles":
-            data = {"result": self.styles}
-            return Response(data, status=status.HTTP_200_OK )
-        
+            return Response(data = {"result": self.styles}, status=status.HTTP_200_OK )
         else:
-            return Response({"result" : {"data": "error"}}, status=status.HTTP_404_NOT_FOUND)
+            return Response(data={"detail": "error"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class APIRoot(APIView):
     """
-    Class based api root view, returns the urls that can be queried.
-
-    get:
-    only allows get method.
+    API Root View.
     """
-    renderer_classes = [PrettyJSONRenderer]
-    
     def get(self, request, format=None):
         data = {
             "Highlighter": reverse("highlighter:highlight", request=request, format=format),

@@ -5,11 +5,14 @@ from pygments.styles import get_all_styles
 #--initialize variables
 # get all lexers in list format
 LEXERS = [lexer for lexer in get_all_lexers()]
+
 # organize all lexers in tuples with two values ('lexer', 'LEXER')
 LANGUAGES = sorted([(lexer[0].lower(), lexer[1][0]) for lexer in LEXERS])
+
 # get and organize all styles available for highlighting the code snippet.
 STYLES = sorted([(style, style) for style in get_all_styles()])
-# available formatters as @ version 0.1.1 (not released).
+
+# available formatters asof version 0.1.1
 # hardcoded.
 FORMATTERS = sorted((
     ('bbcode', 'bbcode'),
@@ -21,12 +24,14 @@ FORMATTERS = sorted((
     ('terminal', 'terminal'),
     ('terminal256', 'terminal256'),
 ))
+
 # a tuple of the line number formats available.
 LINENUMBER = (
     ('none', 'none'),
     ('table', 'table'),
     ('inline', 'inline'),
 )
+
 # HTML: the css styling formats available. inline or class.
 CSS = (
     ('inline', 'inline'),

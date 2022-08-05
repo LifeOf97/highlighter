@@ -7,7 +7,8 @@ backend/venv/
 backend/status.txt
 backend/pygment.txt
 backend/formatters.txt
-backend/secret.json
+backend/*.env
+backend/**/*.env
 
 # Django stuff:
 backend/*.log
@@ -18,9 +19,32 @@ backend/db.sqlite3-journal
 
 #JAVASCRIPT (node)
 # Dependency directories
-frontend/highlight/node_modules/
-frontend/node_modules
-node_modules/
-
+frontend_old
 # vscode stuff
 .vscode/
+
+# Logs
+frontend/logs
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+frontend/node_modules
+frontend/.DS_Store
+frontend/dist
+frontend/dist-ssr
+frontend/coverage
+frontend/*.local
+frontend//cypress/videos/
+frontend//cypress/screenshots/
+frontend/# Editor directories and files
+frontend/.vscode/*
+frontend/!.vscode/extensions.json
+frontend/.idea
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?

@@ -1,31 +1,25 @@
-from corsheaders.defaults import default_headers, default_methods
+from dotenv import load_dotenv
 from pathlib import Path
-import os, json
+import os
+
+# load env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # or like this BASE_DIR.joinpath('path')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load the file where important values are kept, such as the secret key.
-# Then assign it to the variable called 'config' which becomes
-# a dictionary object.
-# using the 'Path' lib to read the json file as text
-SECRET_FILE = Path('secret.json').read_text()
-# then convert the text to json format usig the json lib.
-# and assign it to the 'config' variable.
-CONFIG = json.loads(SECRET_FILE)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = CONFIG.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', default=True)
-DEBUG = CONFIG.get('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.208', '192.168.1.101']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # installed apps
     'highlight.apps.HighlightConfig',
+    # third party apps
     'rest_framework',
     'django_filters',
     'corsheaders',
@@ -81,8 +76,8 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'justHighlight_db',
+        'ENGINE': "django.db.backends.sqlite3",
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -124,14 +119,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR.joinpath('static')
+STATIC_ROOT = BASE_DIR / 'static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.joinpath('media')
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # DJANGO REST FRAMEWORK SETTINGS.
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONOpenAPIRenderer',
         'rest_framework.renderers.JSONRenderer',
     ],
 }
@@ -140,21 +136,9 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
-    'http://127.0.0.1:5500',
-    'http://127.0.0.1:5000',
     'http://127.0.0.1:8080',
-    'http://192.168.43.208:5000',
-    'http://192.168.43.208:5500',
-    'http://192.168.43.208:8000',
-    'http://192.168.43.208:8080',
-    'http://192.168.1.101:5000',
-    'http://192.168.1.101:5500',
-    'http://192.168.1.101:8000',
-    'http://192.168.1.101:8080',
 
 ]
-CORS_ALLOW_METHODS = list(default_methods) + []
-CORS_ALLOW_HEADERS = list(default_headers) + []
 CORS_PREFLIGHT_MAX_AGE = 86400
 CORS_ALLOW_CREDENTIALS = True
 # CORS_EXPOSE_HEADERS = []
