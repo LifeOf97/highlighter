@@ -23,8 +23,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
 
 
 ## Usage
-coming soon.
-
+#
 
 ## Request Config
 
@@ -77,7 +76,7 @@ Here are the config options for highlighting code snippets.
 ```
 
 ## Response Data
-
+#
 The succefull response of a valid request contains the following.
 
 ```javascript
@@ -96,7 +95,7 @@ The succefull response of a valid request contains the following.
 ```
 
 ## Examples
-
+#
 * **Using axios API**
 
 ```javascript
@@ -154,5 +153,5 @@ fetch('https://api.justhighlight.com/highlighter/', {
 ```
 
 ## Credits
-
+#
 **Highlighter** depends fully on **Pygments** which is a syntax highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments official website](https://pygments.org/) for more insight.
