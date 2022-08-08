@@ -5,9 +5,14 @@ from pygments.styles import get_all_styles
 #--initialize variables
 # get all lexers in list format
 LEXERS = [lexer for lexer in get_all_lexers()]
+CLEAN_LEXERS = []
+
+for lexer in LEXERS:
+    if len(lexer[1]) > 0:
+        CLEAN_LEXERS.append(lexer)
 
 # organize all lexers in tuples with two values ('lexer', 'LEXER')
-LANGUAGES = sorted([(lexer[0].lower(), lexer[1][0]) for lexer in LEXERS])
+LANGUAGES = sorted([(lexer[0].lower(), lexer[1][0]) for lexer in CLEAN_LEXERS])
 
 # get and organize all styles available for highlighting the code snippet.
 STYLES = sorted([(style, style) for style in get_all_styles()])
