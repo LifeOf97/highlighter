@@ -48,7 +48,7 @@ onMounted(() => {
         <AppLogo />
     </div>
 
-    <div class="flex items-center gap-2 divide-x divide-slate-600">
+    <div class="flex items-center gap-2 divide-x divide-slate-500">
 
         <div class="flex items-center gap-4 mr-2">
             <div class="hidden items-center gap-1 md:flex">
