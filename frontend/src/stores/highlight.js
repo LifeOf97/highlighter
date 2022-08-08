@@ -6,6 +6,7 @@ import axios from 'axios'
 export const useHighlighterStore = defineStore({
   id: 'highlight',
   state: () => ({
+    theme: localStorage.getItem('theme'),
     highlighter: {data: JSON.parse(localStorage.getItem("highlighter_highlighted")), component: "AppHomeCodeEditor", loading: false, error: null},
     languages: {data: JSON.parse(localStorage.getItem("highlighter_languages")), loading: false, error: null},
     formats: {data: JSON.parse(localStorage.getItem("highlighter_formats")), loading: false, error: null},
@@ -18,8 +19,8 @@ export const useHighlighterStore = defineStore({
 
       await axios.post("highlight/", data)
         .then((resp) => {
-          this.highlighter.loading = false
-          this.highlighter.loading = null
+          this.highlighter.loading = false            
+          this.highlighter.error = null
           this.highlighter.data = resp.data
           localStorage.setItem("highlighter_highlighted", JSON.stringify(resp.data))
           console.log(resp.data)

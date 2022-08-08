@@ -31,9 +31,9 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <main class="w-full h-full bg-white selection:bg-rose-500 selection:text-white">
+  <main class="w-full h-full bg-white selection:bg-rose-500 selection:text-white dark:selection:bg-cyan-500 dark:bg-slate-800">
 
-    <header class="w-full bg-cyan-300">
+    <header class="w-full bg-cyan-300 dark:bg-slate-900">
       <AppHomeHero />
     </header>
 

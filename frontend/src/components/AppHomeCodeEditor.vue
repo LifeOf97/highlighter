@@ -48,9 +48,9 @@ const highlight = () => {
 </script>
 
 <template>
-  <main class="-mt-20 w-11/12 mx-auto h-full shadow-slate-400 md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
+  <main class="-mt-20 w-11/12 mx-auto h-full md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
 
-    <form @submit.prevent="highlight()" class="w-full flex flex-col">
+    <form @submit.prevent="highlight()" class="w-full flex flex-col shadow-xl shadow-slate-400 dark:shadow-slate-900">
 
       <div class="w-full flex flex-col gap-3 p-4 bg-slate-700 rounded-t-md border-b border-slate-600 sm:flex-row lg:gap-7">
         <AppSelectMenu @selected-option="(option) => language.value = option" @refresh="highlighterStore.getLanguages()" v-model="language.value" :input-error="language.error" :loading="highlighterStore.languages.loading" :menu-error="highlighterStore.languages.error" :options="highlighterStore.languages.data" :required="true" label="Language" />

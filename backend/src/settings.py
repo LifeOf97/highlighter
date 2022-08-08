@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG', default=True)
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.102']
 
 
 # Application definition
@@ -138,6 +138,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:8080',
+    'http://192.168.1.102:3000',
+    # 'http://192.168.1.102:8000',
 ]
 
 CORS_REPLACE_HTTPS_REFERER = False

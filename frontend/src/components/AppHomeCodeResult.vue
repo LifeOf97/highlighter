@@ -3,6 +3,7 @@
 import { computed } from 'vue';
 import { useHighlighterStore } from '../stores/highlight.js';
 import IconLongLeft from './icons/IconLongLeft.vue';
+import IconRefresh from './icons/IconRefresh.vue';
 
 // emits
 const emits = defineEmits(["updateComponent"])
@@ -21,9 +22,14 @@ const code = computed(() => {
 </script>
 
 <template>
-  <main class="-mt-20 w-11/12 mx-auto h-full bg-slate-700 shadow-slate-400 md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
-    <div v-html="code" class="overflow-auto h-72 bg-slate-700 rounded-t-md p-4"></div>
+  <main class="-mt-20 w-11/12 mx-auto h-full bg-slate-700 rounded-t-md shadow-slate-400 md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
+    
+    <div v-if="highlighterStore.highlighter.loading" class="w-full bg-slate-700 h-72 flex items-center justify-center">
+      <IconRefresh class="w-7 h-7 fill-slate-400 animate-spin" />
+    </div>
 
+    <div v-else v-html="code" class="overflow-auto h-72 bg-slate-700 rounded-t-md"></div>
+    
     <div class="bg-slate-700 p-4 rounded-b-md">
       <button
         type="submit"

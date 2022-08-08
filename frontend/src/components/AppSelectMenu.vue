@@ -93,7 +93,7 @@ onMounted(() => {
                 enter-active-class="transition-all duration-200"
                 leave-to-class="-translate-y-10 opacity-0"
                 leave-active-class="transition-all duration-200">
-                <div v-if="openMenu" class="absolute top-10 right-0 w-full h-40 bg-white rounded-md overflow-y-auto shadow-inner border-slate-200 z-20">
+                <div v-if="openMenu" class="absolute top-10 right-0 w-full h-40 bg-white rounded-md overflow-y-auto shadow-inner border-slate-200 z-20 dark:bg-slate-200">
                     
                     <div v-if="props.loading" class="w-full h-full flex items-center justify-center">
                         <IconRefresh class="w-7 h-7 fill-slate-900 animate-spin" />
