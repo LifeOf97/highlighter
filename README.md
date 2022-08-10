@@ -23,7 +23,7 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
 
 
 ## Run on your Local Machine (Docker)
-To verify that no code snippet written on the minimal functionality code editor provided in the app are saved by me the developer, i advice that you clone this repo, go through its source code and run the docker-compose to see it live on you own machine.
+To verify that no code snippet written on the minimal functionality code editor provided in the app are saved by me the developer, i advice that you clone this repo, go through its source code and run the docker-compose to see it live on you own machine. Note, you have to go into backend > gunicorn.conf.py and uncomment the contents within the file.
 
 ```bash
 $ docker-compose up --build
