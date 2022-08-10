@@ -22,7 +22,15 @@ Used in highlighting programming languages used in blogs, chat apps and any proj
     default emacs friendly colorful autumn murphy manni monokai perldoc pastie borland trac native fruity bw vim vs tango rrt xcode igor paraiso-light paraiso-dark lovelace algol algol_nu arduino rainbow_dash abap solarized-dark solarized-light sas stata stata-light stata-dark inkpot
 
 
-## Usage
+## Run on your Local Machine (Docker)
+#
+To verify that no code snippet written on the minimal functionality code editor provided in the app are saved by me the developer, i advice that you clone this repo, go through its source code and run the docker-compose to see it live on you own machine.
+
+```bash
+$ docker-compose up --build
+```
+
+Please make sure you have docker all setup on your system, else [get docker](https://docs.docker.com/get-docker/).
 #
 
 ## Request Config
