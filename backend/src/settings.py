@@ -159,7 +159,7 @@ CORS_ALLOWED_ORIGINS = [
     # Heroku ip/domain
     'https://justhighlight.herokuapp.com',
     # vercel ip/domain
-    'https://justhighlight.vecel.app',
+    'https://highlighter.vercel.app'
 ]
 
 CORS_REPLACE_HTTPS_REFERER = False
