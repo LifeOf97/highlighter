@@ -1,6 +1,6 @@
 # Highlighter
 
-A code **syntax highlighter** request api, which can handle most programming languages and text formats.
+A code **syntax highlighter** REST api, which can handle over 500 languages and other text formats.
 
 
 ## Features
