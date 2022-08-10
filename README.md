@@ -153,5 +153,4 @@ fetch('https://api.justhighlight.com/highlighter/', {
 ```
 
 ## Credits
-#
 **Highlighter** depends fully on [Pygments](https://pygments.org/) which is a syntax highlighter written in Python. Checkout [Pygments github repo](https://github.com/pygments/pygments) and also [Pygments official website](https://pygments.org/) for more insight.
