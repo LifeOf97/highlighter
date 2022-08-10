@@ -30,7 +30,6 @@ $ docker-compose up --build
 ```
 
 Please make sure you have docker all setup on your system, else [get docker](https://docs.docker.com/get-docker/).
-#
 
 ## Request Config
 
