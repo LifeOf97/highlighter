@@ -17,9 +17,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', default=True)
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.102']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.102', '192.168.43.2']
 
 
 # Application definition
@@ -132,17 +132,38 @@ REST_FRAMEWORK = {
     ],
 }
 
+
+# Django security Settings
+# CSRF_COOKIE_DOMAIN = ""
+# CSRF_COOKIE_SAMESITE = 'Lax'
+# CSRF_COOKIE_HTTPONLY = False
+# CSRF_COOKIE_SECURE = True
+
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SAMESITE = 'Lax'
+# SESSION_COOKIE_HTTPONLY = True
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+
+
 # DJANGO CORS HEADERS SETTINGS.
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:8080',
+    'http://127.0.0.1:4173',
     'http://192.168.1.102:3000',
-    # 'http://192.168.1.102:8000',
+    'http://192.168.1.102:8000',
+    'http://192.168.1.102:4173',
+    # docker ip
+    "http://api:8080",
 ]
 
 CORS_REPLACE_HTTPS_REFERER = False
 CORS_PREFLIGHT_MAX_AGE = 86400
 CORS_ALLOW_CREDENTIALS = True
-

@@ -1,11 +1,12 @@
 <script setup>
 /* eslint-disable */
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useHighlighterStore } from '../stores/highlight';
 import AppSelectMenu from './AppSelectMenu.vue';
 import AppTextArea from './AppTextArea.vue';
 import IconLongRight from './icons/IconLongRight.vue';
+import { gsap } from 'gsap'
 
 // emits
 const emits = defineEmits(["updateComponent"])
@@ -16,6 +17,7 @@ const language = reactive({value: '', error: null})
 const format = reactive({value: '', error: null})
 const style = reactive({value: '', error: null })
 const code = reactive({value: '', error: null})
+const codeEditor = ref(null)
 
 // stores
 const highlighterStore = useHighlighterStore()
@@ -45,10 +47,19 @@ const highlight = () => {
     emits("updateComponent", 'AppHomeCodeResult')
   }
 }
+
+const animCodeEditor = () => {
+  gsap.from(codeEditor.value, {y: 50, opacity: 0, duration: 1, delay: 0.5})
+}
+
+// hooks
+onMounted(() => {
+  animCodeEditor()
+})
 </script>
 
 <template>
-  <main class="-mt-20 w-11/12 mx-auto h-full md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
+  <main ref="codeEditor" class="-mt-20 w-11/12 mx-auto h-full md:-mt-0 md:absolute md:-top-20 md:w-1/2 md:right-0 lg:right-10 xl:right-20">
 
     <form @submit.prevent="highlight()" class="w-full flex flex-col shadow-xl shadow-slate-400 dark:shadow-slate-900">
 

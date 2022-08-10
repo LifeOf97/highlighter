@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: gunicorn -c gunicorn.conf.py src.wsgi:application
+    env_file:
+      - ./backend/src/.env
+    networks:
+      justhighlight:
+        ipv4_address: 192.168.43.2
+    expose:
+      - 8000
+    container_name: justhighlight-api
+  
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: http-server /home/justhighlight/frontend/dist
+    networks:
+      justhighlight:
+        ipv4_address: 192.168.43.3
+    ports:
+      - 8080:8080
+    container_name: justhighlight-web
+
+networks:
+  justhighlight:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.43.0/24"

@@ -1,7 +1,7 @@
 <script setup>
 /* eslint-disable */
 import { RouterLink, useRoute } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useHighlighterStore } from '../stores/highlight';
 import AppLogo from './AppLogo.vue';
 import IconTag from './icons/IconTag.vue';
@@ -39,6 +39,10 @@ const closeTheme = (e) => {
 onMounted(() => {
     document.addEventListener('click', closeTheme)
 })
+
+onUnmounted(() => {
+    document.removeEventListener('click', closeTheme)
+})
 </script>
 
 <template>
@@ -68,9 +72,9 @@ onMounted(() => {
 
             <div class="relative">
                 <button type="button" @click="openTheme = !openTheme" class="flex items-center focus:outline-none">
-                    <IconSun v-if="getTheme === 'light'" :class="openTheme ? 'fill-white':'fill-slate-400'" class="w-6 h-6 hover:fill-white" />
-                    <IconMoon v-else-if="getTheme === 'dark'" :class="openTheme ? 'fill-white':'fill-slate-400'" class="w-6 h-6 hover:fill-white" />
-                    <IconSystem v-else :class="openTheme ? 'fill-white':'fill-slate-400'" class="w-6 h-6 hover:fill-white" />
+                    <IconSun v-if="getTheme === 'light'" :class="openTheme ? 'fill-white':'fill-slate-500'" class="w-6 h-6 hover:fill-white" />
+                    <IconMoon v-else-if="getTheme === 'dark'" :class="openTheme ? 'fill-white':'fill-slate-500'" class="w-6 h-6 hover:fill-white" />
+                    <IconSystem v-else :class="openTheme ? 'fill-white':'fill-slate-500'" class="w-6 h-6 hover:fill-white" />
                 </button>
 
                 <transition
@@ -97,7 +101,7 @@ onMounted(() => {
             </div>
 
             <a href="https://github.com/realestKMA/highlighter" target="_blank" rel="noopener noreferrer" class="relative group">
-                <IconGithub class="absolute top-0 w-6 h-6 fill-slate-400 z-10" />
+                <IconGithub class="absolute top-0 w-6 h-6 fill-slate-500 z-10" />
                 <IconGithub class="w-6 h-6 fill-slate-500 group-hover:animate-ping dark:fill-cyan-500" />
             </a>
         </div>

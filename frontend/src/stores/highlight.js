@@ -23,12 +23,10 @@ export const useHighlighterStore = defineStore({
           this.highlighter.error = null
           this.highlighter.data = resp.data
           localStorage.setItem("highlighter_highlighted", JSON.stringify(resp.data))
-          console.log(resp.data)
         })
         .catch((err) => {
           this.highlighter.loading = false
           this.highlighter.loading = "An error occured"
-          console.log(err.response)
         })
     },
     async getLanguages() {

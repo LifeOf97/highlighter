@@ -1,6 +1,6 @@
 <script setup>
 /* eslint-disable */
-import { onMounted, ref, computed } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
 import IconCheck from './icons/IconCheck.vue';
 import IconUnfoldMore from './icons/IconUnfoldMore.vue';
 import IconUnfoldLess from './icons/IconUnfoldLess.vue';
@@ -25,7 +25,7 @@ const emits = defineEmits(["update:modelValue", "refresh", "selectedOption"])
 // refs
 const openMenu = ref(false)
 const selected = ref('')
-const root = ref(null)
+const root = ref('')
 
 // computed
 const filterOptions = computed(() => {
@@ -45,16 +45,21 @@ const closeMenu = (e) => {
     if (!root.value.contains(e.target)) {
         openMenu.value = false;
     }
+    
 }
 
 // hooks
 onMounted(() => {
     document.addEventListener("click", closeMenu)
 })
+
+onUnmounted(() => {
+    document.removeEventListener('click', closeMenu)
+})
 </script>
 
 <template>
-  <main ref="root" class="w-full">
+  <main ref="root" class="w-full flex flex-col">
 
     <div class="w-full flex flex-col gap-1">
 
@@ -77,8 +82,8 @@ onMounted(() => {
                     class="w-full bg-transparent text-xs text-slate-200 p-2 placeholder-slate-600 focus:outline-none" />
 
                 <div class="absolute right-0 top-1">
-                    <IconUnfoldLess v-if="openMenu" :class="openMenu ? 'fill-slate-200':'fill-slate-600'" class="w-5 h-5 transition-all duration-200 group-hover:fill-slate-200" />
-                    <IconUnfoldMore v-else :class="openMenu ? 'fill-slate-200':'fill-slate-600'" class="w-5 h-5 transition-all duration-200 group-hover:fill-slate-200" />
+                    <IconUnfoldLess v-if="openMenu" :class="openMenu ? 'fill-slate-200':'fill-slate-500'" class="w-5 h-5 transition-all duration-200 group-hover:fill-slate-200" />
+                    <IconUnfoldMore v-else :class="openMenu ? 'fill-slate-200':'fill-slate-500'" class="w-5 h-5 transition-all duration-200 group-hover:fill-slate-200" />
                 </div>
 
             </div>

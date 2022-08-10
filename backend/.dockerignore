@@ -1,0 +1,13 @@
+# PYTHON
+# ignore the virtual environment
+venv/
+**/*.env
+
+# Django stuff:
+*.log
+static/
+media/
+db.sqlite3
+db.sqlite3-journal
+
+**/*pycache*

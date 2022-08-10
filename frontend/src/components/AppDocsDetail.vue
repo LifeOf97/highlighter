@@ -1,7 +1,6 @@
 <script setup>
 /* eslint-disable */
 import { RouterLink } from 'vue-router';
-import AppHomeFooter from './AppHomeFooter.vue';
 
 const formats = [
     { short: 'HTML', full: 'Hypertext Markup Language.', url: 'https://www.w3schools.com/html/html_intro.asp' },
@@ -175,9 +174,5 @@ const styles = [
       <!-- end of important info -->
     </div>
     <!-- end of features available -->
-
-    <!-- start of footer -->
-      <AppHomeFooter />
-    <!-- end of footer -->
   </main>
 </template>

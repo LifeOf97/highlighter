@@ -8,14 +8,21 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {title: 'Welcome | JustHighLight'}
     },
     {
       path: '/docs',
       name: 'docs',
-      component: () => import('../views/DocsView.vue')
+      component: () => import('../views/DocsView.vue'),
+      meta: {title: 'Documentation | JustHighLight'}
     }
   ]
+})
+
+router.beforeEach((to, from) => {
+  // update the page title
+  document.title = to.meta.title;
 })
 
 export default router

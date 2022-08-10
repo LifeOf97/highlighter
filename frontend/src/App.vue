@@ -14,7 +14,7 @@ onMounted(() => {
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     highlighterStore.theme = 'dark'
   } else {
-    highlighterStore.theme = 'light'
+    highlighterStore.theme = ''
   }
 })
 </script>
