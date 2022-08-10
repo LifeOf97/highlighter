@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG', default=True)
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.102', '192.168.43.2']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.2', 'justhighlight.herokuapp.com']
 
 
 # Application definition
@@ -132,7 +132,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 # Django security Settings
 # CSRF_COOKIE_DOMAIN = ""
 # CSRF_COOKIE_SAMESITE = 'Lax'
@@ -156,12 +155,12 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:8080',
-    'http://127.0.0.1:4173',
-    'http://192.168.1.102:3000',
-    'http://192.168.1.102:8000',
-    'http://192.168.1.102:4173',
     # docker ip
     "http://api:8080",
+    # Heroku ip/domain
+    'https://justhighlight.herokuapp.com',
+    # vercel ip/domain
+    'https://justhighlight.vecel.app',
 ]
 
 CORS_REPLACE_HTTPS_REFERER = False
